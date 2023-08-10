@@ -9,6 +9,7 @@ import { RegistrerComponent } from './components/public/registrer/registrer.comp
 import { FooterComponent } from './components/secure/footer/footer.component';
 import { NavInitComponent } from './components/secure/nav-init/nav-init.component';
 import { InicioComponent } from './components/secure/inicio/inicio.component';
+import { EquipoComponent } from './components/secure/equipo/equipo.component';
 
 
 
@@ -22,6 +23,7 @@ import { InicioComponent } from './components/secure/inicio/inicio.component';
     FooterComponent,
     NavInitComponent,
     InicioComponent,
+    EquipoComponent,
   
   ],
   imports: [
