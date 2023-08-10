@@ -1,0 +1,31 @@
+.content-container {
+    position: relative;
+}
+
+.background-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px; /* Ajusta el tamaño de la imagen */
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 500px; /* Ajusta el espacio izquierdo */
+    transform: translateY(-50%);
+    max-width: 400px; /* Ajusta el ancho máximo del texto */
+    color: white;
+}
+.team-link {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.team-link:hover {
+    border-bottom: 2px solid transparent;
+}

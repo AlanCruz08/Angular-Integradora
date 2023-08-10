@@ -7,6 +7,8 @@ import { DashboardComponent } from './components/secure/dashboard/dashboard.comp
 import { LoginComponent } from './components/public/login/login.component';
 import { RegistrerComponent } from './components/public/registrer/registrer.component';
 import { FooterComponent } from './components/secure/footer/footer.component';
+import { NavInitComponent } from './components/secure/nav-init/nav-init.component';
+import { InicioComponent } from './components/secure/inicio/inicio.component';
 
 
 
@@ -18,6 +20,8 @@ import { FooterComponent } from './components/secure/footer/footer.component';
     LoginComponent,
     RegistrerComponent,
     FooterComponent,
+    NavInitComponent,
+    InicioComponent,
   
   ],
   imports: [
