@@ -1,0 +1,88 @@
+<!-- Div principal que utiliza flexbox para organizar el contenido en columnas -->
+<div class="d-flex flex-column min-vh-100">
+    <!-- Componente de navegación -->
+    <app-nav></app-nav>
+  
+    <!-- Contenedor para el contenido principal de la página -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="profile-card col-md-3 d-flex align-items-center">
+                <div class="card mx-auto align-items-center">
+                    <img src="/assets/svg/profileM.svg" alt="Perfil" class="card-img-top rounded-circle" style="width: 150px; height: 150px;">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <h5 class="card-title">Nombre de Usuario</h5>
+                        <p class="card-text">Descripción o datos sobre el usuario.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Columna para el contenido principal -->
+            <div class="col-md-9">
+                <!-- Contenedor flexible para alinear contenido en la parte inferior -->
+                <div class="d-flex align-items-end h-100 ">
+                    <!-- Espacio flexible que crece automáticamente -->
+                    <div class="flex-grow-1"></div>
+                    <!-- Contenedor para las cards de imágenes -->
+                    <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
+                        <!-- Primera card con imagen -->
+                        <div class="card text-center mb-3 mx-3 " style="width: 18rem;">
+                            <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top ">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Temperatura</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Segunda card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                            <img src="/assets/sensores/humedad.svg" alt="Humedad" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Humedad</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                        <!-- Tercera card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                            <img src="/assets/sensores/distancia.svg" alt="Distancia" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Distancia</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                        <!-- Cuarta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                            <img src="/assets/sensores/movimiento.svg" alt="Movimiento" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Movimiento</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                        <!-- Quinta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                            <img src="/assets/sensores/alcohol.svg" alt="Alcohol" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Alcohol</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                        <!-- Sexta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;">
+                            <img src="/assets/sensores/humo.svg" alt="Humo" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Humo</h1>
+                                <p class="card-text">## Valor ##.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Espacio flexible que ocupa el resto del espacio vertical disponible -->
+    <div class="flex-grow-1"></div>
+  
+    <!-- Componente de pie de página -->
+    <div>
+      <app-footer></app-footer>
+    </div>
+</div>

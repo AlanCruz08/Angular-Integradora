@@ -1,0 +1,16 @@
+.card {
+    border: 2px solid rgb(110, 98, 215);
+}
+.card-profile {
+    border: 2px solid rgb(110, 98, 215);
+}
+
+.profile-card {
+    height: 900px; /* Cambia esto al valor de altura que desees */
+    border: 2px solid black;
+    background-color: rgb(110, 98, 215, 0.5);
+    padding: 10px;
+}
+
+
+

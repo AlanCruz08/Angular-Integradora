@@ -1,0 +1,43 @@
+<!-- Barra de navegación utilizando el sistema de componentes de navegación de Bootstrap -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
+  <div class="container-fluid">
+    <!-- Enlace de la marca (logo) del sitio -->
+    <a class="navbar-brand" href="#">
+      <!-- Imagen del logo -->
+      <img src="assets/svg/jira.svg" alt="Logo">
+    </a>
+    <!-- Botón de alternar para expandir o colapsar la barra de navegación en pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Contenedor para los elementos de navegación -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- Lista de elementos de navegación centrados en el navbar -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
+        <!-- Elemento de navegación: Enlace "Temperatura" -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Temperatura</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Humedad</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">PIR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Humo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alcohol</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Distancia</a>
+          </li>
+      </ul>
+      
+      <!-- Botón de salida -->
+      <button class="btn btn-outline-danger " type="submit" style="width: 120px;">Salir</button>
+    </div>
+  </div>
+</nav>

@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/secure/dashboard/dashboard/dashboard.component';
-import { LoginComponent } from './components/public/login/login/login.component';
-import { RegistrerComponent } from './components/public/registrer/registrer/registrer.component';
+import { NavComponent } from './components/secure/nav/nav.component';
+import { DashboardComponent } from './components/secure/dashboard/dashboard.component';
+import { LoginComponent } from './components/public/login/login.component';
+import { RegistrerComponent } from './components/public/registrer/registrer.component';
+import { FooterComponent } from './components/secure/footer/footer.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavComponent,
     DashboardComponent,
     LoginComponent,
-    RegistrerComponent
+    RegistrerComponent,
+    FooterComponent,
+  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
