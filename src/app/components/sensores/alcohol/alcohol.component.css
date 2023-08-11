@@ -1,0 +1,11 @@
+.content-container {
+    position: relative;
+}
+
+.image-right {
+    position: absolute;
+    right: 0;
+    top: 62%;
+    transform: translateY(-50%);
+    width: 550px; /* Ajusta el tamaño de la imagen */
+}

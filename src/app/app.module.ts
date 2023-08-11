@@ -11,6 +11,13 @@ import { NavInitComponent } from './components/secure/nav-init/nav-init.componen
 import { InicioComponent } from './components/secure/inicio/inicio.component';
 import { EquipoComponent } from './components/secure/equipo/equipo.component';
 import { NavLoginComponent } from './components/secure/nav-login/nav-login.component';
+import { TemperaturaComponent } from './components/sensores/temperatura/temperatura.component';
+import { HumedadComponent } from './components/sensores/humedad/humedad.component';
+import { DistanciaComponent } from './components/sensores/distancia/distancia.component';
+import { PirComponent } from './components/sensores/pir/pir.component';
+import { AlcoholComponent } from './components/sensores/alcohol/alcohol.component';
+import { HumoComponent } from './components/sensores/humo/humo.component';
+import { NotFoundComponent } from './components/public/not-found/not-found.component';
 
 
 
@@ -26,6 +33,13 @@ import { NavLoginComponent } from './components/secure/nav-login/nav-login.compo
     InicioComponent,
     EquipoComponent,
     NavLoginComponent,
+    TemperaturaComponent,
+    HumedadComponent,
+    DistanciaComponent,
+    PirComponent,
+    AlcoholComponent,
+    HumoComponent,
+    NotFoundComponent,
   
   ],
   imports: [
