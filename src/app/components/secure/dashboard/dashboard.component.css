@@ -14,3 +14,18 @@
 
 
 
+.row {
+    margin: 100; /* Eliminar el margen predeterminado de los cards */
+}
+
+.card {
+    border-radius: 10px; /* Agrega un radio a las esquinas del card */
+    border: 2px solid rgb(110, 98, 215);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; /* Agregar transiciones para el efecto de resaltado */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efecto de levantar el card al pasar el ratón por encima */
+    border-color: #ffbb33; /* Cambiar el color del borde al pasar el ratón por encima */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Agregar una sombra al card al pasar el ratón por encima */
+}
