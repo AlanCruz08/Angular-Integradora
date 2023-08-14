@@ -1,1 +1,40 @@
-<p>humo works!</p>
+<div class="d-flex flex-column min-vh-100">
+    <!-- Componente de navegación -->
+    <app-nav></app-nav>
+
+    <!-- Contenido principal con color de fondo personalizado y opacidad -->
+    <div class="content-container" style="background-color: rgba(110, 98, 215, 0.6); flex-grow: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+        <div class="container">
+            <h1 class="text-center mb-4">Sensor Humo</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Producto 1</td>
+                            <td>Descripción del producto 1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Producto 2</td>
+                            <td>Descripción del producto 2</td>
+                        </tr>
+                        <!-- Agrega más filas según necesites -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Componente de pie de página -->
+    <app-footer></app-footer>
+    
+    <!-- Imagen en el extremo derecho -->
+    <img src="/assets/svg/log2.svg" alt="Imagen derecha" class="image-right-behind">
+</div>

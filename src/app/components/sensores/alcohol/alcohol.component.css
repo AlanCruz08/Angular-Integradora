@@ -1,11 +1,18 @@
 .content-container {
     position: relative;
+    z-index: 1;
 }
 
-.image-right {
+.table {
+    margin-bottom: 1rem;
+}
+
+.image-right-behind {
     position: absolute;
     right: 0;
-    top: 62%;
+    top: 50%;
     transform: translateY(-50%);
-    width: 550px; /* Ajusta el tamaño de la imagen */
+    max-width: 100%; /* Hace que la imagen sea responsiva */
+    width: auto; /* Evita que la imagen se estire en pantallas pequeñas */
+    z-index: 0;
 }

@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RegistrerComponent {
 
+  goBack(){
+    window.history.back();
+  }
+
 }

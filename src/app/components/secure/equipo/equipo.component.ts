@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./equipo.component.css']
 })
 export class EquipoComponent {
+  goBack() {
+    window.history.back();
+  }
 
 }
