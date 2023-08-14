@@ -16,3 +16,29 @@
     width: auto; /* Evita que la imagen se estire en pantallas pequeñas */
     z-index: 0;
 }
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgb(110, 98, 215);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-text {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #3777d6; /* Cambiar el color al pasar el ratón por encima */
+}
+
+.btn-back:hover .btn-text {
+    transform: translateY(5px); /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
+}
+

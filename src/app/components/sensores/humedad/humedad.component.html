@@ -5,6 +5,9 @@
     <!-- Contenido principal con color de fondo personalizado y opacidad -->
     <div class="content-container" style="background-color: rgba(110, 98, 215, 0.6); flex-grow: 1; position: relative; display: flex; justify-content: center; align-items: center;">
         <div class="container">
+            <button class="btn btn-back" [routerLink]="'/dashboard'">
+                <span class="btn-text">Atrás</span>
+            </button>
             <h1 class="text-center mb-4">Sensor Humedad</h1>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
