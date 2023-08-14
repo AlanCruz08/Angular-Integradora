@@ -1,43 +1,51 @@
-<!-- Barra de navegación utilizando el sistema de componentes de navegación de Bootstrap -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
   <div class="container-fluid">
-    <!-- Enlace de la marca (logo) del sitio -->
     <a class="navbar-brand" href="#">
-      <!-- Imagen del logo -->
       <img src="assets/svg/jira.svg" alt="Logo">
     </a>
-    <!-- Botón de alternar para expandir o colapsar la barra de navegación en pantallas pequeñas -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Contenedor para los elementos de navegación -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-      <!-- Lista de elementos de navegación centrados en el navbar -->
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
-        <!-- Elemento de navegación: Enlace "Temperatura" -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/temperatura">Temperatura</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <!-- Texto "Opciones" reemplazado por el ícono -->
+            <img src="/assets/icons/menu.png" alt="Opciones">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/temperatura">Temperatura</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/humedad">Humedad</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/distancia">Distancia</a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/alcohol">Alcohol</a>
+            </li>
+            <li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/pir">Movimiento</a>
+            </li>
+            <li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/humo">Humo</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/equipo">Nosotros</a>
+            </li>
+            <hr class="dropdown-divider">
+
+            <li>
+              <a class="dropdown-item" href="#">Salir</a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/humedad">Humedad</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/pir">PIR</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/humo">Humo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/alcohol">Alcohol</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/distancia">Distancia</a>
-          </li>
       </ul>
-      
-      <!-- Botón de salida -->
-      <button class="btn btn-outline-danger " type="submit" style="width: 120px;">Salir</button>
     </div>
   </div>
 </nav>
