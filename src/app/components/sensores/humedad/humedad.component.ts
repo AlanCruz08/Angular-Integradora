@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SecureService } from 'src/app/services/secure.service';
-import { Humedad } from 'src/app/interface/sensores';
+import { SensoresAll } from 'src/app/interface/sensores';
 
 @Component({
   selector: 'app-humedad', // Asegúrate de que el selector sea el correcto
@@ -9,7 +9,7 @@ import { Humedad } from 'src/app/interface/sensores';
   styleUrls: ['./humedad.component.css']
 })
 export class HumedadComponent implements OnInit {
-  valoresHumedad: Humedad [] = [];
+  valoresHumedad: SensoresAll [] = [];
 
   constructor(private router: Router, private secureService: SecureService) { }
 

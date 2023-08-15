@@ -1,12 +1,11 @@
-export interface Temperatura {
+export interface Sensor {
     id: number;
     valor: number;
     unidades: string;
   }
-export interface Humedad {
+export interface SensoresAll {
   
-    valor: number|string;
-    
+    valor: number|string;   
 }
 export interface Humo {}
 export interface Alcohol {}

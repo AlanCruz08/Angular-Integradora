@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Temperatura } from 'src/app/interface/sensores'; // Importar la interfaz Temperatura
+import { Sensor } from 'src/app/interface/sensores'; // Importar la interfaz Temperatura
 import { SecureService } from 'src/app/services/secure.service'; // Importar el servicio SecureService
 
 @Component({
@@ -10,13 +10,17 @@ import { SecureService } from 'src/app/services/secure.service'; // Importar el 
 })
 export class DashboardComponent implements OnInit {
 
-  temperaturas: Temperatura[] = []; // Arreglo para almacenar los datos de temperatura
+  temperatura: Sensor[] = []; // Arreglo para almacenar los datos de temperatura
+  humedad: Sensor[] = []; // Arreglo para almacenar los datos de humedad
+
+  
   private intervalId: any; // Variable para almacenar el ID del intervalo
 
   constructor(private router: Router, private secureService: SecureService) { }
 
   ngOnInit(): void {
-    this.obtenerTemperaturas(); // Llamar al método para obtener temperaturas al inicializar el componente
+    this.obtenerTemperatura(); // Llamar al método para obtener temperaturas al inicializar el componente
+    this.obtenerHumedad();
     this.iniciarIntervalo(); // Llamar al método para iniciar el intervalo al inicializar el componente
   }
 
@@ -25,16 +29,35 @@ export class DashboardComponent implements OnInit {
   }
 
   // Método para obtener los datos de temperatura desde el servicio
-  obtenerTemperaturas(): void {
-    this.secureService.getTemperaturas().subscribe(
+  obtenerTemperatura(): void {
+    this.secureService.getTemperatura().subscribe(
       (response: any) => {
         if (Array.isArray(response.data)) {
-          this.temperaturas = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.temperaturas);
+          this.temperatura = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.temperatura);
         } else if (response.data && typeof response.data === 'object') {
           // Si es un objeto individual, crea un array con ese objeto
-          this.temperaturas = [response.data];
-          console.log(this.temperaturas);
+          this.temperatura = [response.data];
+          console.log(this.temperatura);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener las temperaturas:', error);
+      }
+    );
+  }
+  obtenerHumedad(): void {
+    this.secureService.getHumedad().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.data)) {
+          this.humedad = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.humedad);
+        } else if (response.data && typeof response.data === 'object') {
+          // Si es un objeto individual, crea un array con ese objeto
+          this.humedad = [response.data];
+          console.log(this.humedad);
         } else {
           console.error('Los datos de temperatura no son válidos:', response.data);
         }
@@ -71,7 +94,7 @@ export class DashboardComponent implements OnInit {
 
   iniciarIntervalo(): void {
     this.intervalId = setInterval(() => {
-      this.obtenerTemperaturas();
+      this.obtenerTemperatura();
     }, 30000); // Ejecutar cada 30 segundos (30000 milisegundos)
   }
 

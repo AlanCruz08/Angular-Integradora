@@ -2,24 +2,36 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'env';
 import { Observable } from 'rxjs';
-import { Humedad, Temperatura } from 'src/app/interface/sensores';
+import { Sensor, SensoresAll } from 'src/app/interface/sensores';
 @Injectable({
   providedIn: 'root'
 })
 export class SecureService {
-
+  //Ultimo dato
   private apiUrlTemp = environment.apiTemp;
+  private apiUrlHum = environment.apiHumedad;
+
+  //All
   private apiUrlHumeAll = environment.apiHumeAll;
+  private apiUrlTempAll = environment.apiTempAll;
+
 
   constructor(private http: HttpClient) { }
-
-    getTemperaturas(): Observable<Temperatura[]> {
-      return this.http.get<Temperatura[]>(`${this.apiUrlTemp}/`);
+//Ultimo dato
+  getTemperatura(): Observable<Sensor[]> {
+    return this.http.get<Sensor[]>(`${this.apiUrlTemp}/`);
   }
 
- 
+  getHumedad(): Observable<Sensor[]> {
+    return this.http.get<Sensor[]>(`${this.apiUrlHum}/`);
+  }
 
-  getHumedadAll(): Observable<Humedad[]> {
-    return this.http.get<Humedad[]>(`${this.apiUrlHumeAll}/`);
+   //All
+  getHumedadAll(): Observable<SensoresAll[]> {
+    return this.http.get<SensoresAll[]>(`${this.apiUrlHumeAll}/`);
+  }
+
+  getTemperaturaAll(): Observable<SensoresAll[]> {
+    return this.http.get<SensoresAll[]>(`${this.apiUrlTempAll}/`);
   }
 }
