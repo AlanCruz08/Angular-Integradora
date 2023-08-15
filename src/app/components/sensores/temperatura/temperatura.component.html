@@ -11,28 +11,23 @@
             <h1 class="text-center mb-4">Sensor Temperatura</h1>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Producto 1</td>
-                            <td>Descripción del producto 1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Producto 2</td>
-                            <td>Descripción del producto 2</td>
-                        </tr>
-                        <!-- Agrega más filas según necesites -->
-                    </tbody>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Valor</th>
+                      <th>Unidades</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let temperatura of temperaturas">
+                      <td>{{ temperatura.id }}</td>
+                      <td>{{ temperatura.valor }}</td>
+                      <td>{{ temperatura.unidades }}</td>
+                    </tr>
+                  </tbody>
                 </table>
-            </div>
+              </div>
+              
         </div>
     </div>
     <!-- Componente de pie de página -->

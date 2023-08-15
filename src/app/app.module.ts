@@ -18,6 +18,9 @@ import { PirComponent } from './components/sensores/pir/pir.component';
 import { AlcoholComponent } from './components/sensores/alcohol/alcohol.component';
 import { HumoComponent } from './components/sensores/humo/humo.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http'; 
+
+
 
 
 
@@ -40,11 +43,13 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
     AlcoholComponent,
     HumoComponent,
     NotFoundComponent,
+    
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
     
   ],
   providers: [],

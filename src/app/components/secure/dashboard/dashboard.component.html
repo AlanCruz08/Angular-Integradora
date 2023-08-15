@@ -23,13 +23,18 @@
                     <!-- Contenedor para las cards de imágenes -->
                     <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
                         <!-- Primera card con imagen -->
-                        <div class="card text-center mb-3 mx-3" style="width: 18rem;" (click)="redirectToComponent('temperatura')">
-                            <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top">
-                            <div class="card-body d-flex flex-column justify-content-end">
-                                <h1 class="card-title">Temperatura</h1>
-                                <p class="card-text">## Valor ##.</p>
-                            </div>
-                        </div>
+                        <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
+                            <!-- Primera card con imagen -->
+                            <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
+                                <!-- Primera card con imagen -->
+                                <div class="card text-center mb-3 mx-3" style="width: 18rem;" (click)="redirectToComponent('temperatura')">
+                                    <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top">
+                                    <div class="card-body d-flex flex-column justify-content-end">
+                                        <h1 class="card-title">Temperatura</h1>
+                                        <!-- Utiliza el primer valor de temperatura y unidades -->
+                                        <p class="card-text">{{ temperaturas[0].valor }} {{ temperaturas[0].unidades }}</p>
+                                    </div>
+                                </div>
                         <!-- Segunda card con imagen -->
                         <div class="card text-center mb-3 mx-3" style="width: 18rem;" (click)="redirectToComponent('humedad')">
                             <img src="/assets/sensores/humedad.svg" alt="Humedad" class="card-img-top">
