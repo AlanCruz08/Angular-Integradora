@@ -12,3 +12,11 @@ export interface User{
     name: string;
     email: string;
 }
+
+export interface Deslogueo{
+    token: string | null;
+}
+
+export interface token{
+    access_token: string|null;
+}

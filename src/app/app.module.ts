@@ -18,7 +18,9 @@ import { PirComponent } from './components/sensores/pir/pir.component';
 import { AlcoholComponent } from './components/sensores/alcohol/alcohol.component';
 import { HumoComponent } from './components/sensores/humo/humo.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 
 
@@ -49,10 +51,17 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
