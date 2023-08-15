@@ -12,6 +12,10 @@ export class DashboardComponent implements OnInit {
 
   temperatura: Sensor[] = []; // Arreglo para almacenar los datos de temperatura
   humedad: Sensor[] = []; // Arreglo para almacenar los datos de humedad
+  distancia: Sensor[] = []; // Arreglo para almacenar los datos de distancia
+  pir: Sensor[] = []; // Arreglo para almacenar los datos de pir
+  alcohol: Sensor[] = []; // Arreglo para almacenar los datos de alcohol
+  humo: Sensor[] = []; // Arreglo para almacenar los datos de humo
 
   
   private intervalId: any; // Variable para almacenar el ID del intervalo
@@ -21,6 +25,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerTemperatura(); // Llamar al método para obtener temperaturas al inicializar el componente
     this.obtenerHumedad();
+    this.obtenerDistancia();
+    this.obtenerPir();
+    this.obtenerAlcohol();
+    this.obtenerHumo();
+
     this.iniciarIntervalo(); // Llamar al método para iniciar el intervalo al inicializar el componente
   }
 
@@ -48,6 +57,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  // Método para obtener los datos de humedad desde el servicio
   obtenerHumedad(): void {
     this.secureService.getHumedad().subscribe(
       (response: any) => {
@@ -67,6 +77,87 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  // Método para obtener los datos de distancia desde el servicio
+  obtenerDistancia(): void {
+    this.secureService.getDistancia().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.data)) {
+          this.distancia = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.distancia);
+        } else if (response.data && typeof response.data === 'object') {
+          // Si es un objeto individual, crea un array con ese objeto
+          this.distancia = [response.data];
+          console.log(this.distancia);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener las temperaturas:', error);
+      }
+    );
+  }
+  // Método para obtener los datos de pir desde el servicio
+  obtenerPir(): void {
+    this.secureService.getPir().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.data)) {
+          this.pir = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.pir);
+        } else if (response.data && typeof response.data === 'object') {
+          // Si es un objeto individual, crea un array con ese objeto
+          this.pir = [response.data];
+          console.log(this.pir);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener las temperaturas:', error);
+      }
+    );
+  }
+  // Método para obtener los datos de alcohol desde el servicio
+  obtenerAlcohol(): void {
+    this.secureService.getAlcohol().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.data)) {
+          this.alcohol = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.alcohol);
+        } else if (response.data && typeof response.data === 'object') {
+          // Si es un objeto individual, crea un array con ese objeto
+          this.alcohol = [response.data];
+          console.log(this.alcohol);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener las temperaturas:', error);
+      }
+    );
+  }
+  // Método para obtener los datos de humo desde el servicio
+  obtenerHumo(): void {
+    this.secureService.getHumo().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.data)) {
+          this.humo = response.data; // Asignar el arreglo de temperaturas al arreglo local
+          console.log(this.humo);
+        } else if (response.data && typeof response.data === 'object') {
+          // Si es un objeto individual, crea un array con ese objeto
+          this.humo = [response.data];
+          console.log(this.humo);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener las temperaturas:', error);
+      }
+    );
+  }
+  
 
   // Método para redirigir a un componente específico en función del nombre recibido
   redirectToComponent(componentName: string) {
