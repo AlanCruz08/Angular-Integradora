@@ -186,6 +186,11 @@ export class DashboardComponent implements OnInit {
   iniciarIntervalo(): void {
     this.intervalId = setInterval(() => {
       this.obtenerTemperatura();
+      this.obtenerHumedad();
+      this.obtenerDistancia();
+      this.obtenerPir();
+      this.obtenerAlcohol();
+      this.obtenerHumo();
     }, 30000); // Ejecutar cada 30 segundos (30000 milisegundos)
   }
 

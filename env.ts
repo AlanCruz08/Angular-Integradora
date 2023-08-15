@@ -12,7 +12,10 @@ export const environment = {
     apiDistAll: 'http://127.0.0.1:8000/api/feeds/distancia',
     apiPirAll: 'http://127.0.0.1:8000/api/feeds/pir',
     apiAlcoAll: 'http://127.0.0.1:8000/api/feeds/alcohol',
-    apiHumoAll: 'http://127.0.0.1:8000/api/feeds/humo'
+    apiHumoAll: 'http://127.0.0.1:8000/api/feeds/humo',
+
+
+    apiUser:'http://127.0.0.1:8000/api/user'
 
 
 
