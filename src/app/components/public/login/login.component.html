@@ -42,6 +42,9 @@
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        <div *ngIf="error" class="error-message">
+                            <p class="text-center text-danger">{{ error }}</p>
+                        </div>
                         <button type="button" class="btn btn-secondary mt-2" (click)="goBack()">Cancelar</button>
                     </div>
                 </form>

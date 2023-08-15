@@ -3,7 +3,7 @@ import { Login } from 'src/app/interface/login';
 import { LoginService} from 'src/app/services/login/login.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,45 +11,50 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-login: Login = { email: '', password: '' };
+  login: Login = { email: '', password: '' };
   error: string | null;
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private fb:FormBuilder) {
     this.error = null;
   }
-
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/login']);
     }
   }
 
   EnvioDatos() {
     if (this.login.email && this.login.password) {
-      this.loginService.login(this.login).subscribe(
-        (response: any) => {
+      if (this.login.password.length < 8) {
+        this.error = 'La contraseña debe tener al menos 8 caracteres.';
+        setTimeout(() => {
           this.error = null;
-          const token = response.access_token;
-          localStorage.setItem('token', token);
-          console.log('antes dashboard');
-          this.router.navigate(['']);
-        },
-        error => {
-          this.error = error && error.error && error.error.msg ? error.error.msg : 'Error desconocido.';
-
-          setTimeout(() => {
+        }, 2000);
+      } else {
+        this.loginService.login(this.login).subscribe(
+          (response: any) => {
             this.error = null;
-          }, 2000);
-        }
-      );
+            const token = response.access_token;
+            localStorage.setItem('token', token);
+            console.log('antes dashboard');
+            this.router.navigate(['']);
+          },
+          error => {
+            this.error = error && error.error && error.error.msg ? error.error.msg : 'Error desconocido.';
+  
+            setTimeout(() => {
+              this.error = null;
+            }, 2000);
+          }
+        );
+      }
     } else {
       this.error = 'Por favor, verifica los campos.';
       setTimeout(() => {
         this.error = null;
       }, 2000);
     }
-
   }
     goBack(){
     window.history.back();
