@@ -9,6 +9,7 @@ export interface Register {
 }
 
 export interface User{
+    id: number;
     name: string;
     email: string;
 }
