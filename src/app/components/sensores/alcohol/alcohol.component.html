@@ -8,9 +8,14 @@
                 <span class="btn-text">Atrás</span>
             </button>
             <h1 class="text-center mb-4">Sensor Alcohol</h1>
+            <div class="form-group">
+                <label for="fechaBusqueda">Buscar por fecha:</label>
+                <input type="date" id="fechaBusqueda" [(ngModel)]="fechaBusqueda" class="form-control">
+                <button class="btn btn-primary" (click)="buscarPorFecha()">Buscar</button>
+            </div>
+            
             <div class="table-container p-4">
                 <div class="table-responsive">
-                    
                     <table class="table table-bordered table-striped table-hover custom-table-border">
                         <thead class="thead-success">
                             <tr>
@@ -21,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let valor of valoresAlcohol; let i = index" class="align-middle">
+                            <tr *ngFor="let valor of (fechaBusqueda ? valoresFiltrados : valoresAlcohol); let i = index" class="align-middle">
                                 <td class="text-center">{{ i + 1 }}</td>
                                 <td class="text-center">Alcohol</td>
                                 <td class="text-center">{{ valor.valor }}</td>

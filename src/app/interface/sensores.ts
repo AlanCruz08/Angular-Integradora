@@ -5,7 +5,7 @@ export interface Sensor {
   }
 export interface SensoresAll { 
     valor: number|string;  
-    fecha: Date; 
+    fecha: string; 
 }
 export interface Humo {}
 export interface Alcohol {}
