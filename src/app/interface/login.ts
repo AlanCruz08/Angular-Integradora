@@ -21,3 +21,17 @@ export interface Deslogueo{
 export interface token{
     access_token: string|null;
 }
+
+export interface UserDataResponse
+{
+    status: number;
+    data: any;
+}
+
+export interface UserC {
+    id: number;
+    name: string;
+    email: string;
+    token: string;
+    
+  }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable,throwError,catchError } from 'rxjs';
-import { User } from 'src/app/interface/login';
+import { User, UserC } from 'src/app/interface/login';
 import { environment } from 'env';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Login, Register, Deslogueo } from 'src/app/interface/login';
@@ -30,29 +30,18 @@ export class LoginService {
       return false;
     }
   }
-
-  async getUserFromToken(token: string): Promise<User | undefined>  {
-    try {
-      const response = await this.http.get<User | undefined>(`${this.apiUser}/get-user-from-token/${token}`).toPromise();
-      return response;
-    } catch (error) {
-      const errorMessage = (error as Error).message || 'Error desconocido al obtener el usuario desde el token';
-      throw new Error('Error al obtener el usuario desde el token: ' + errorMessage);
+  //funcion donde el token de local storage si sea del usuario
+  async validarToken(): Promise<Boolean> {
+    const token = localStorage.getItem('token');
+    if(token){
+      return await this.validacion(token);
     }
-
+    return false;
   }
-
-  async getAuthenticatedUser(): Promise<User | undefined> {
-    try {
-      const response = await this.http.get<User | undefined>(`${this.apiUser}/authenticated-user`).toPromise();
-      return response;
-    } catch (error) {
-      const errorMessage = (error as Error).message || 'Error desconocido al obtener el usuario autenticado';
-      throw new Error('Error al obtener el usuario autenticado: ' + errorMessage);
-    }
-
-  }
-
+  
+  
+  
+  
 
 
   getUser(): Observable<User[]> {
