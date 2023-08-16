@@ -51,6 +51,9 @@
                             es requerida.</p>
                     </div>
                     </div>
+                    <div *ngIf="error" class="error-message">
+                        <p class="text-center text-danger">{{ error }}</p>
+                    </div>
                     <div class="d-grid gap-3">
                         <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Crear cuenta</button>
                         <button type="button" class="btn btn-secondary mt-2" (click)="goBack()">Cancelar</button>

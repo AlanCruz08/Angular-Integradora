@@ -12,23 +12,24 @@ import { AlcoholComponent } from './components/sensores/alcohol/alcohol.componen
 import { PirComponent } from './components/sensores/pir/pir.component';
 import { DistanciaComponent } from './components/sensores/distancia/distancia.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
+import { validateGuard } from './validate/validate.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {path: 'inicio',component:InicioComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrerComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'equipo', component: EquipoComponent },
+  { path: 'dashboard', component: DashboardComponent,canActivate: [validateGuard] },
+  { path: 'equipo', component: EquipoComponent,canActivate: [validateGuard] },
 
 
   //sensores
-  {path: 'temperatura', component:TemperaturaComponent},
-  {path: 'humedad', component:HumedadComponent},
-  {path:'humo', component:HumoComponent},
-  {path:'alcohol', component:AlcoholComponent},
-  {path:'pir',component:PirComponent},
-  {path:'distancia',component:DistanciaComponent},
+  {path: 'temperatura', component:TemperaturaComponent,canActivate: [validateGuard]},
+  {path: 'humedad', component:HumedadComponent,canActivate: [validateGuard]},
+  {path:'humo', component:HumoComponent,canActivate: [validateGuard]},
+  {path:'alcohol', component:AlcoholComponent,canActivate: [validateGuard]},
+  {path:'pir',component:PirComponent,canActivate: [validateGuard]},
+  {path:'distancia',component:DistanciaComponent,canActivate: [validateGuard]},
 
 
   { path: '**', component:NotFoundComponent }
