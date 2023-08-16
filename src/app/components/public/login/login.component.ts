@@ -41,6 +41,7 @@ export class LoginComponent {
             this.router.navigate(['']);
           },
           error => {
+            console.error('Error en la solicitud:', error);
             this.error = error && error.error && error.error.msg ? error.error.msg : 'Error desconocido.';
   
             setTimeout(() => {

@@ -78,8 +78,6 @@ export class LoginService {
   {
     return localStorage.getItem('authToken');
   }
-   
-
 
 }
 
