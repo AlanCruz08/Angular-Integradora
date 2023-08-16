@@ -15,7 +15,7 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
 import { validateGuard } from './validate/validate.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   {path: 'inicio',component:InicioComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrerComponent },

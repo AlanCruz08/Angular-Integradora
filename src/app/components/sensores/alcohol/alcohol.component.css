@@ -41,4 +41,7 @@
 .btn-back:hover .btn-text {
     transform: translateY(5px); /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
 }
+.custom-table-border {
+    border: 2px  rgb(76, 49, 198); /* Cambia "red" al color que desees */
+  }
 
