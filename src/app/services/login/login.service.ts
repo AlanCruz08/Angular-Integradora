@@ -30,6 +30,7 @@ export class LoginService {
       return false;
     }
   }
+  
   //funcion donde el token de local storage si sea del usuario
   async validarToken(): Promise<Boolean> {
     const token = localStorage.getItem('token');
@@ -38,7 +39,7 @@ export class LoginService {
     }
     return false;
   }
-  
+
   
   
   
