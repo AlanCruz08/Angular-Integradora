@@ -19,7 +19,7 @@ export class NavComponent {
         (response: any) => {
           console.log(response);
           localStorage.removeItem('token');
-          this.router.navigate(['/']);
+          this.router.navigate(['/inicio']);
         },
         error => {
           console.log(this.error = error.error.msg);

@@ -42,7 +42,7 @@ export class LoginService {
     if(token)
     {
       const headers = new HttpHeaders({"Accept": "application/json", "Authorization": `Bearer ${token}` });
-      return this.http.post(`${this.apiUser}/inicio`, credenciales, { headers: headers }).pipe(
+      return this.http.post(`${this.apiUser}/logout`, credenciales, { headers: headers }).pipe(
         catchError((error) => {
           // Manejar el error aquí según tus necesidades
           return throwError(error);
