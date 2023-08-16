@@ -15,8 +15,18 @@ export class validateGuard implements CanActivate {
     if (token) {
       try {
         const isTokenValid = await this.apiService.validacion(token);
+
         if (isTokenValid) {
-          return true; // Usuario autenticado, se permite el acceso al dashboard
+          const userFromToken = await this.apiService.getUserFromToken(token);
+          const authenticatedUser = await this.apiService.getAuthenticatedUser();
+
+          if (userFromToken?.email === authenticatedUser?.email) {
+            return true; // Usuario autenticado y propietario del token, se permite el acceso al dashboard
+          } else {
+            localStorage.removeItem('token');
+            this.router.navigate(['/inicio']);
+            return false; // Intento de acceso a la cuenta de otro usuario, redirigir al inicio
+          }
         } else {
           localStorage.removeItem('token');
           this.router.navigate(['/inicio']);
@@ -24,7 +34,7 @@ export class validateGuard implements CanActivate {
         }
       } catch (error) {
         localStorage.removeItem('token');
-        // console.error('Error al verificar el token:', error);
+        // Manejar el error según tus necesidades
         this.router.navigate(['/inicio']);
         return false; // Error al verificar el token, se redirige al login por precaución
       }

@@ -31,6 +31,30 @@ export class LoginService {
     }
   }
 
+  async getUserFromToken(token: string): Promise<User | undefined>  {
+    try {
+      const response = await this.http.get<User | undefined>(`${this.apiUser}/get-user-from-token/${token}`).toPromise();
+      return response;
+    } catch (error) {
+      const errorMessage = (error as Error).message || 'Error desconocido al obtener el usuario desde el token';
+      throw new Error('Error al obtener el usuario desde el token: ' + errorMessage);
+    }
+
+  }
+
+  async getAuthenticatedUser(): Promise<User | undefined> {
+    try {
+      const response = await this.http.get<User | undefined>(`${this.apiUser}/authenticated-user`).toPromise();
+      return response;
+    } catch (error) {
+      const errorMessage = (error as Error).message || 'Error desconocido al obtener el usuario autenticado';
+      throw new Error('Error al obtener el usuario autenticado: ' + errorMessage);
+    }
+
+  }
+
+
+
   getUser(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUser}/`); 
   }
