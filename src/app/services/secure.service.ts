@@ -30,7 +30,10 @@ export class SecureService {
   constructor(private http: HttpClient) { }
 //Ultimo dato
   getTemperatura(): Observable<Sensor[]> {
-    return this.http.get<Sensor[]>(`${this.apiUrlTemp}/`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
+    const url = `${this.apiUrlTemp}/`;
+    return this.http.get<Sensor[]>(url, { headers });
   }
   getHumedad(): Observable<Sensor[]> {
     return this.http.get<Sensor[]>(`${this.apiUrlHum}/`);
@@ -51,7 +54,10 @@ export class SecureService {
    //All
   getHumedadAll(): Observable<SensoresAll[]> {
     return this.http.get<SensoresAll[]>(`${this.apiUrlHumeAll}/`);
+
   }
+
+  
   getTemperaturaAll(): Observable<SensoresAll[]> {
     return this.http.get<SensoresAll[]>(`${this.apiUrlTempAll}/`);
   }
