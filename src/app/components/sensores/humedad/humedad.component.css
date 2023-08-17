@@ -1,5 +1,23 @@
+.content-container {
+    position: relative;
+    z-index: 1;
+}
 
+.table {
+    margin-bottom: 1rem;
+}
 
+.image-right-behind {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 100%;
+    /* Hace que la imagen sea responsiva */
+    width: auto;
+    /* Evita que la imagen se estire en pantallas pequeñas */
+    z-index: 0;
+}
 
 .btn-back {
     position: absolute;
@@ -20,30 +38,29 @@
 }
 
 .btn-back:hover {
-    background-color: #3777d6; /* Cambiar el color al pasar el ratón por encima */
+    background-color: #3777d6;
+    /* Cambiar el color al pasar el ratón por encima */
 }
 
 .btn-back:hover .btn-text {
-    transform: translateY(5px); /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
-}
-.content-container {
-    background-color: rgba(110, 98, 215, 0.6);
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    transform: translateY(5px);
+    /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
 }
 
-.table {
-    width: 100%;
-    margin-bottom: 1rem;
+.custom-table-border {
+    border: 2px rgb(76, 49, 198);
+    /* Cambia "red" al color que desees */
 }
 
-.text-center {
-    text-align: center;
+/* Estilos para el encabezado de la tabla */
+.thead-custom th {
+    background-color: #752dbd; /* Cambia este color según tus preferencias */
+    color: #fff;
 }
+
+
+
+
 
 
 
