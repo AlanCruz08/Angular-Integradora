@@ -14,13 +14,14 @@ import { DistanciaComponent } from './components/sensores/distancia/distancia.co
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { validateGuard } from './validate/validate.guard';
 import { VerifyComponent } from './components/public/verify/verify.component';
+import { VerifyGuard } from './guard/route-verify.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrerComponent },
-  { path: 'verify', component: VerifyComponent },
+  { path: 'verify', component: VerifyComponent, canActivate: [VerifyGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [validateGuard] },
   { path: 'equipo', component: EquipoComponent, canActivate: [validateGuard] },
 
