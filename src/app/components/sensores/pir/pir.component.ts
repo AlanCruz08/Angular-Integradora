@@ -9,7 +9,11 @@ import { SensoresAll } from 'src/app/interface/sensores';
   styleUrls: ['./pir.component.css']
 })
 export class PirComponent implements OnInit {
-  valoresPir: SensoresAll [] = [];
+  valoresPir: SensoresAll[] = [];
+  valoresFiltrados: SensoresAll[] = [];      // Arreglo para almacenar los valores filtrados
+  fechaBusqueda: boolean = false; // Indica si hay una búsqueda activa o no
+  fechaInicial: string = ''; // Fecha inicial del rango de búsqueda
+  fechaFinal: string = ''; // Fecha final del rango de búsqueda
 
   constructor(private router: Router, private secureService: SecureService) { }
 
@@ -21,7 +25,7 @@ export class PirComponent implements OnInit {
     this.secureService.getPIRAll().subscribe(
       (response: any) => {
         console.log('Respuesta del servidor:', response);
-  
+
         if (Array.isArray(response.data)) {
           this.valoresPir = response.data;
           console.log('Valores de pir asignados:', this.valoresPir);
@@ -38,5 +42,32 @@ export class PirComponent implements OnInit {
       }
     );
   }
+  buscarValores(): void {
+    const filtro = {
+      sensor_id: 4, // Cambia este valor al ID del sensor que desees
+      fecha_inicial: this.fechaInicial,
+      fecha_final: this.fechaFinal
+    };
 
+    console.log('Filtro enviado al servidor:', filtro);
+
+    this.secureService.getRegistrosPorRangoDeFechas(filtro).subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (Array.isArray(response.data)) {
+          this.valoresFiltrados = response.data; // Asigna los valores filtrados a la variable
+          console.log('Valores filtrados asignados:', this.valoresFiltrados);
+          this.fechaBusqueda = true; // Marca que hay una búsqueda activa
+        } else {
+          console.error('Los datos filtrados no son válidos:', response.data);
+          this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores filtrados:', error);
+        this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+      }
+    );
+  }
 }

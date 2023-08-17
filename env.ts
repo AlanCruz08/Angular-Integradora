@@ -14,6 +14,9 @@ export const environment = {
     apiAlcoAll: 'http://127.0.0.1:8000/api/feeds/alcohol',
     apiHumoAll: 'http://127.0.0.1:8000/api/feeds/humo',
 
+    //filtro
+    apiFiltro:'http://127.0.0.1:8000/api/feeds/filtro',
+
 
     apiUser:'http://127.0.0.1:8000/api',
     webUrl : 'http://localhost:4200/',

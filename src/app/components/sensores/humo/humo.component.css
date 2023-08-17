@@ -12,10 +12,13 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    max-width: 100%; /* Hace que la imagen sea responsiva */
-    width: auto; /* Evita que la imagen se estire en pantallas pequeñas */
+    max-width: 100%;
+    /* Hace que la imagen sea responsiva */
+    width: auto;
+    /* Evita que la imagen se estire en pantallas pequeñas */
     z-index: 0;
 }
+
 .btn-back {
     position: absolute;
     top: 20px;
@@ -35,10 +38,40 @@
 }
 
 .btn-back:hover {
-    background-color: #3777d6; /* Cambiar el color al pasar el ratón por encima */
+    background-color: #3777d6;
+    /* Cambiar el color al pasar el ratón por encima */
 }
 
 .btn-back:hover .btn-text {
-    transform: translateY(5px); /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
+    transform: translateY(5px);
+    /* Agregar un desplazamiento horizontal al texto al pasar el ratón por encima */
 }
 
+.custom-table-border {
+    border: 2px rgb(76, 49, 198);
+    /* Cambia "red" al color que desees */
+}
+
+/* Estilos para el encabezado de la tabla */
+.thead-custom th {
+    background-color: #752dbd;
+    /* Cambia este color según tus preferencias */
+    color: #fff;
+}
+
+/* Estilos personalizados para los inputs más pequeños */
+.custom-input-sm {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    /* Agregar espacio inferior */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Estilos para el botón de búsqueda más pequeño */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}

@@ -38,7 +38,7 @@ export class LoginComponent {
             const token = response.access_token;
             localStorage.setItem('token', token);
             console.log('antes dashboard');
-            this.router.navigate(['']);
+            this.router.navigate(['dashboard']);
           },
           error => {
             console.error('Error en la solicitud:', error);

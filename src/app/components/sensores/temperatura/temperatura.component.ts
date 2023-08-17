@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SecureService } from 'src/app/services/secure.service';
-import { Sensor } from 'src/app/interface/sensores';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { SensoresAll } from 'src/app/interface/sensores';
 
 @Component({
@@ -11,42 +8,65 @@ import { SensoresAll } from 'src/app/interface/sensores';
   styleUrls: ['./temperatura.component.css']
 })
 export class TemperaturaComponent implements OnInit {
-  valoresTemperatura: SensoresAll [] = [];
-  temperaturas: Sensor[] = [];
+  valoresTemperatura: SensoresAll[] = []; // Almacena todos los valores de temperatura
+  valoresFiltrados: SensoresAll[] = []; // Almacena los valores filtrados por búsqueda
+  fechaBusqueda: boolean = false; // Indica si hay una búsqueda activa o no
+  fechaInicial: string = ''; // Fecha inicial del rango de búsqueda
+  fechaFinal: string = ''; // Fecha final del rango de búsqueda
 
-  constructor(
-    private secureService: SecureService,
-    private http: HttpClient,
-    private router: Router,
-    ) { }
+  constructor(private secureService: SecureService) { }
 
-    ngOnInit(): void {
-      this.obtenerValoresTemperatura();
-    }
-  
-    obtenerValoresTemperatura(): void {
-      this.secureService.getTemperaturaAll().subscribe(
-        (response: any) => {
-          console.log('Respuesta del servidor:', response);
-    
-          if (Array.isArray(response.data)) {
-            this.valoresTemperatura = response.data;
-            console.log('Valores de humedad asignados:', this.valoresTemperatura);
-          } else if (response.data && typeof response.data === 'object') {
-            // Si es un objeto individual, crea un array con ese objeto
-            this.valoresTemperatura = [response.data];
-            console.log('Valor de humedad individual asignado:', this.valoresTemperatura);
-          } else {
-            console.error('Los datos de humedad no son válidos:', response.data);
-          }
-        },
-        (error: any) => {
-          console.error('Error al obtener los valores de humedad:', error);
+  ngOnInit(): void {
+    this.obtenerValoresTemperatura(); // Llama a la función para obtener todos los valores de temperatura
+  }
+
+  obtenerValoresTemperatura(): void {
+    this.secureService.getTemperaturaAll().subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (Array.isArray(response.data)) {
+          this.valoresTemperatura = response.data; // Asigna los valores de temperatura recuperados
+          console.log('Valores de temperatura asignados:', this.valoresTemperatura);
+        } else if (response.data && typeof response.data === 'object') {
+          this.valoresTemperatura = [response.data]; // Crea un array con el valor de temperatura individual
+          console.log('Valor de temperatura individual asignado:', this.valoresTemperatura);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
         }
-      );
-    }
-  
-  
-  
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores de temperatura:', error);
+      }
+    );
+  }
 
+  buscarValores(): void {
+    const filtro = {
+      sensor_id: 1, // Cambia este valor al ID del sensor que desees
+      fecha_inicial: this.fechaInicial,
+      fecha_final: this.fechaFinal
+    };
+
+    console.log('Filtro enviado al servidor:', filtro);
+
+    this.secureService.getRegistrosPorRangoDeFechas(filtro).subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (Array.isArray(response.data)) {
+          this.valoresFiltrados = response.data; // Asigna los valores filtrados a la variable
+          console.log('Valores filtrados asignados:', this.valoresFiltrados);
+          this.fechaBusqueda = true; // Marca que hay una búsqueda activa
+        } else {
+          console.error('Los datos filtrados no son válidos:', response.data);
+          this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores filtrados:', error);
+        this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+      }
+    );
+  }
 }
