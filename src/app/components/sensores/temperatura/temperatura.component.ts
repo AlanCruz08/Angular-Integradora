@@ -8,16 +8,16 @@ import { SensoresAll } from 'src/app/interface/sensores';
   styleUrls: ['./temperatura.component.css']
 })
 export class TemperaturaComponent implements OnInit {
-  valoresTemperatura: SensoresAll[] = [];
-  valoresFiltrados: SensoresAll[] = [];
-  fechaBusqueda: boolean = false; // Cambia esto para controlar si hay una búsqueda activa
-  fechaInicial: string = '';
-  fechaFinal: string = '';
+  valoresTemperatura: SensoresAll[] = []; // Almacena todos los valores de temperatura
+  valoresFiltrados: SensoresAll[] = []; // Almacena los valores filtrados por búsqueda
+  fechaBusqueda: boolean = false; // Indica si hay una búsqueda activa o no
+  fechaInicial: string = ''; // Fecha inicial del rango de búsqueda
+  fechaFinal: string = ''; // Fecha final del rango de búsqueda
 
   constructor(private secureService: SecureService) { }
 
   ngOnInit(): void {
-    this.obtenerValoresTemperatura();
+    this.obtenerValoresTemperatura(); // Llama a la función para obtener todos los valores de temperatura
   }
 
   obtenerValoresTemperatura(): void {
@@ -26,10 +26,10 @@ export class TemperaturaComponent implements OnInit {
         console.log('Respuesta del servidor:', response);
 
         if (Array.isArray(response.data)) {
-          this.valoresTemperatura = response.data;
+          this.valoresTemperatura = response.data; // Asigna los valores de temperatura recuperados
           console.log('Valores de temperatura asignados:', this.valoresTemperatura);
         } else if (response.data && typeof response.data === 'object') {
-          this.valoresTemperatura = [response.data];
+          this.valoresTemperatura = [response.data]; // Crea un array con el valor de temperatura individual
           console.log('Valor de temperatura individual asignado:', this.valoresTemperatura);
         } else {
           console.error('Los datos de temperatura no son válidos:', response.data);
@@ -55,17 +55,17 @@ export class TemperaturaComponent implements OnInit {
         console.log('Respuesta del servidor:', response);
 
         if (Array.isArray(response.data)) {
-          this.valoresFiltrados = response.data;
+          this.valoresFiltrados = response.data; // Asigna los valores filtrados a la variable
           console.log('Valores filtrados asignados:', this.valoresFiltrados);
-          this.fechaBusqueda = true; // Marcar que hay una búsqueda activa
+          this.fechaBusqueda = true; // Marca que hay una búsqueda activa
         } else {
           console.error('Los datos filtrados no son válidos:', response.data);
-          this.fechaBusqueda = false; // Marcar que no hay una búsqueda activa
+          this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
         }
       },
       (error: any) => {
         console.error('Error al obtener los valores filtrados:', error);
-        this.fechaBusqueda = false; // Marcar que no hay una búsqueda activa
+        this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
       }
     );
   }
