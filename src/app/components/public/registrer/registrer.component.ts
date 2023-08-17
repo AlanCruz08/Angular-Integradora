@@ -32,10 +32,10 @@ export class RegistrerComponent {
       this.registerService.register(this.register).subscribe(
         (response: any) => {
           this.error = null;
-          this.router.navigate(['/verify'], {
-            relativeTo: this.route,
-            state: { registerData: this.register }
-          });
+          const queryParams = {
+            registerData: JSON.stringify(this.register)
+          };
+          this.router.navigate(['/verify'], { queryParams });
         },
         error => {
           console.error('Error en la solicitud:', error);

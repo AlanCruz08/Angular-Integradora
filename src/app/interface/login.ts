@@ -6,7 +6,7 @@ export interface Register {
     name: string;
     email: string;
     password: string;
-    code?: number;
+    codigo?: number;
 }
 
 export interface User{
