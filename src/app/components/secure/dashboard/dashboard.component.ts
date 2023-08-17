@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   alcohol: Sensor[] = []; // Arreglo para almacenar los datos de alcohol
   humo: Sensor[] = []; // Arreglo para almacenar los datos de humo
   
+  
 
   
   private intervalId: any; // Variable para almacenar el ID del intervalo

@@ -5,95 +5,78 @@
     <!-- Contenedor para el contenido principal de la página -->
     <div class="container mt-5">
         <div class="row">
-            <div class="profile-card col-md-3 col-sm-12 d-flex align-items-center">
-                <div class="card mx-auto align-items-center">
-                    <img src="/assets/svg/profileM.svg" alt="Perfil" class="card-img-top rounded-circle"
-                        style="width: 150px; height: 150px;">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <h5 class="card-title">Nombre de Usuario</h5>
-                        <p class="card-text">Descripción o datos sobre el usuario.</p>
-                    </div>
-                </div>
-            </div>
             <!-- Columna para el contenido principal -->
-            <div class="col-md-9 col-sm-12">
+            <div class="col-md-12">
                 <!-- Contenedor flexible para alinear contenido en la parte inferior -->
                 <div class="d-flex align-items-end h-100">
                     <!-- Espacio flexible que crece automáticamente -->
                     <div class="flex-grow-1"></div>
-                    <!-- Contenedor para las cards de imágenes -->
-                    <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
+                    <!-- Contenedor para las cards de imágenes con esquinas redondeadas -->
+                    <div class="rounded p-3  content-with-bg ml-auto d-flex flex-wrap justify-content-center">
                         <!-- Primera card con imagen -->
-                        <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
-                            <!-- Primera card con imagen -->
-                            <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
-                                <!-- Primera card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('temperatura')">
-                                    <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Temperatura</h1>
-                                        <p class="card-text">{{ temperatura.length > 0 ? temperatura[0].valor : 'No disponible' }}
-                                            {{ temperatura.length > 0 ? temperatura[0].unidades : '' }}
-                                        </p>
-                                    </div>
-                                    
-                                </div>
-                                <!-- Segunda card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('humedad')">
-                                    <img src="/assets/sensores/humedad.svg" alt="Humedad" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Humedad</h1>
-                                        <p class="card-text">{{ humedad.length > 0 ? humedad[0].valor : 'No disponible' }}
-                                            {{ humedad.length > 0 ? humedad[0].unidades : '' }}
-                                        </p>
-                                    </div> 
-                                </div>
-                                <!-- Tercera card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                (click)="redirectToComponent('distancia')">
-                                <img src="/assets/sensores/distancia.svg" alt="Distancia" class="card-img-top">
-                                <div class="card-body d-flex flex-column justify-content-end">
-                                    <h1 class="card-title">Distancia</h1>
-                                    <p class="card-text">{{ distancia.length > 0 ? distancia[0].valor : 'No disponible' }}
-                                        {{ distancia.length > 0 ? distancia[0].unidades : '' }}
-                                    </p>
-                                </div> 
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('temperatura')">
+                            <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Temperatura</h1>
+                                <p class="card-text">{{ temperatura.length > 0 ? temperatura[0].valor : 'No disponible' }}
+                                    {{ temperatura.length > 0 ? temperatura[0].unidades : '' }}
+                                </p>
                             </div>
-                                <!-- Cuarta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('pir')">
-                                    <img src="/assets/sensores/movimiento.svg" alt="Movimiento" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Movimiento</h1>
-                                        <p class="card-text">{{ pir.length > 0 ? pir[0].valor : 'No disponible' }}
-                                            {{ pir.length > 0 ? pir[0].unidades : '' }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Quinta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('alcohol')">
-                                    <img src="/assets/sensores/alcohol.svg" alt="Alcohol" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Alcohol</h1>
-                                        <p class="card-text">{{ alcohol.length > 0 ? alcohol[0].valor : 'No disponible' }}
-                                            {{ alcohol.length > 0 ? alcohol[0].unidades : '' }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Sexta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('humo')">
-                                    <img src="/assets/sensores/humo.svg" alt="Humo" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Humo</h1>
-                                        <p class="card-text">{{ humo.length > 0 ? humo[0].valor : 'No disponible' }}
-                                            {{ humo.length > 0 ? humo[0].unidades : '' }}
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                        <!-- Segunda card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('humedad')">
+                            <img src="/assets/sensores/humedad.svg" alt="Humedad" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Humedad</h1>
+                                <p class="card-text">{{ humedad.length > 0 ? humedad[0].valor : 'No disponible' }}
+                                    {{ humedad.length > 0 ? humedad[0].unidades : '' }}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Tercera card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('distancia')">
+                            <img src="/assets/sensores/distancia.svg" alt="Distancia" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Distancia</h1>
+                                <p class="card-text">{{ distancia.length > 0 ? distancia[0].valor : 'No disponible' }}
+                                    {{ distancia.length > 0 ? distancia[0].unidades : '' }}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Cuarta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('pir')">
+                            <img src="/assets/sensores/movimiento.svg" alt="Movimiento" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Movimiento</h1>
+                                <p class="card-text">{{ pir.length > 0 ? pir[0].valor : 'No disponible' }}
+                                    {{ pir.length > 0 ? pir[0].unidades : '' }}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Quinta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('alcohol')">
+                            <img src="/assets/sensores/alcohol.svg" alt="Alcohol" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Alcohol</h1>
+                                <p class="card-text">{{ alcohol.length > 0 ? alcohol[0].valor : 'No disponible' }}
+                                    {{ alcohol.length > 0 ? alcohol[0].unidades : '' }}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Sexta card con imagen -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;"
+                            (click)="redirectToComponent('humo')">
+                            <img src="/assets/sensores/humo.svg" alt="Humo" class="card-img-top">
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <h1 class="card-title">Humo</h1>
+                                <p class="card-text">{{ humo.length > 0 ? humo[0].valor : 'No disponible' }}
+                                    {{ humo.length > 0 ? humo[0].unidades : '' }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -102,9 +85,12 @@
 
             <!-- Espacio flexible que ocupa el resto del espacio vertical disponible -->
             <div class="flex-grow-1"></div>
+            <hr>
 
             <!-- Componente de pie de página -->
             <div>
                 <app-footer></app-footer>
             </div>
         </div>
+    </div>
+</div>
