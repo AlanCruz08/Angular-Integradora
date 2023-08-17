@@ -3,11 +3,12 @@ export interface Sensor {
     valor: number;
     unidades: string;
   }
-export interface SensoresAll { 
-    valor: number|string;  
-    fecha: string; 
+
+
+export interface SensoresAll {
+  id: number;
+  valor: number | string;
+  unidades: string;
+  fecha: Date;
+  hora: string;
 }
-export interface Humo {}
-export interface Alcohol {}
-export interface Pir {}
-export interface Distancia {}

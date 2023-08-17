@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SecureService } from 'src/app/services/secure.service';
-import { Sensor } from 'src/app/interface/sensores';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { SensoresAll } from 'src/app/interface/sensores';
 
 @Component({
@@ -11,77 +8,65 @@ import { SensoresAll } from 'src/app/interface/sensores';
   styleUrls: ['./temperatura.component.css']
 })
 export class TemperaturaComponent implements OnInit {
-  valoresTemperatura: SensoresAll [] = [];
-  valoresFiltrados: SensoresAll[] = [];      // Arreglo para almacenar los valores filtrados
-  fechaBusqueda: string = '';                // Variable para almacenar la fecha de búsqueda
+  valoresTemperatura: SensoresAll[] = [];
+  valoresFiltrados: SensoresAll[] = [];
+  fechaBusqueda: boolean = false; // Cambia esto para controlar si hay una búsqueda activa
+  fechaInicial: string = '';
+  fechaFinal: string = '';
 
+  constructor(private secureService: SecureService) { }
 
-  constructor(
-    private secureService: SecureService,
-    private http: HttpClient,
-    private router: Router,
-    ) { }
+  ngOnInit(): void {
+    this.obtenerValoresTemperatura();
+  }
 
-    ngOnInit(): void {
-      this.obtenerValoresTemperatura();
-    }
-  
-    obtenerValoresTemperatura(): void {
-      this.secureService.getTemperaturaAll().subscribe(
-        (response: any) => {
-          console.log('Respuesta del servidor:', response);
-    
-          if (Array.isArray(response.data)) {
-            this.valoresTemperatura = response.data;
-            console.log('Valores de humedad asignados:', this.valoresTemperatura);
-          } else if (response.data && typeof response.data === 'object') {
-            // Si es un objeto individual, crea un array con ese objeto
-            this.valoresTemperatura = [response.data];
-            console.log('Valor de humedad individual asignado:', this.valoresTemperatura);
-          } else {
-            console.error('Los datos de humedad no son válidos:', response.data);
-          }
-        },
-        (error: any) => {
-          console.error('Error al obtener los valores de humedad:', error);
+  obtenerValoresTemperatura(): void {
+    this.secureService.getTemperaturaAll().subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (Array.isArray(response.data)) {
+          this.valoresTemperatura = response.data;
+          console.log('Valores de temperatura asignados:', this.valoresTemperatura);
+        } else if (response.data && typeof response.data === 'object') {
+          this.valoresTemperatura = [response.data];
+          console.log('Valor de temperatura individual asignado:', this.valoresTemperatura);
+        } else {
+          console.error('Los datos de temperatura no son válidos:', response.data);
         }
-      );
-    }
-   
-
-    buscarPorFecha(): void {
-      if (this.fechaBusqueda) {
-        console.log('Fecha de búsqueda:', this.fechaBusqueda);
-  
-        // Convertir la fecha de búsqueda al formato adecuado
-        const fechaBusquedaFormatted = this.formatoFechaBusqueda(this.fechaBusqueda);
-  
-        // Filtrar los valores por la fecha de búsqueda
-        this.valoresFiltrados = this.valoresTemperatura.filter((valor) => {
-          console.log('Comparando fechas:', valor.fecha, fechaBusquedaFormatted);
-          return this.sonFechasIguales(valor.fecha, fechaBusquedaFormatted);
-        });
-  
-        console.log('Valores filtrados:', this.valoresFiltrados);
-      } else {
-        this.valoresFiltrados = [];   // Si no hay fecha de búsqueda, vaciar los valores filtrados
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores de temperatura:', error);
       }
-    }
-  
-    // Función para convertir la fecha de búsqueda al formato adecuado
-    formatoFechaBusqueda(fecha: string): string {
-      const dateParts = fecha.split('-');
-      const day = dateParts[2];
-      const month = dateParts[1];
-      const year = dateParts[0];
-      return `${day}/${month}/${year}`;
-    }
-  
-    // Función para comparar si dos fechas son iguales (solo la parte de la fecha, sin hora)
-    sonFechasIguales(fecha1: string, fecha2: string): boolean {
-      return fecha1.split(' ')[0] === fecha2;
-    }
-  
-  
+    );
+  }
 
+  buscarValores(): void {
+    const filtro = {
+      sensor_id: 1, // Cambia este valor al ID del sensor que desees
+      fecha_inicial: this.fechaInicial,
+      fecha_final: this.fechaFinal
+    };
+
+    console.log('Filtro enviado al servidor:', filtro);
+
+    this.secureService.getRegistrosPorRangoDeFechas(filtro).subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (Array.isArray(response.data)) {
+          this.valoresFiltrados = response.data;
+          console.log('Valores filtrados asignados:', this.valoresFiltrados);
+          this.fechaBusqueda = true; // Marcar que hay una búsqueda activa
+        } else {
+          console.error('Los datos filtrados no son válidos:', response.data);
+          this.fechaBusqueda = false; // Marcar que no hay una búsqueda activa
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores filtrados:', error);
+        this.fechaBusqueda = false; // Marcar que no hay una búsqueda activa
+      }
+    );
+  }
 }

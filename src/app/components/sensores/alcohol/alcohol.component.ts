@@ -40,7 +40,7 @@ export class AlcoholComponent implements OnInit {
     );
   }
 
-  buscarPorFecha(): void {
+ /*  buscarPorFecha(): void {
     if (this.fechaBusqueda) {
       console.log('Fecha de búsqueda:', this.fechaBusqueda);
 
@@ -71,5 +71,5 @@ export class AlcoholComponent implements OnInit {
   // Función para comparar si dos fechas son iguales (solo la parte de la fecha, sin hora)
   sonFechasIguales(fecha1: string, fecha2: string): boolean {
     return fecha1.split(' ')[0] === fecha2;
-  }
+  } */
 }

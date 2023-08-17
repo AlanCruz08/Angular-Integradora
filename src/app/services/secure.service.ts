@@ -14,7 +14,7 @@ export class SecureService {
   private apiUrlPir = environment.apiPir;
   private apiUrlAlco = environment.apiAlco;
   private apiUrlHumo = environment.apiHumo;
-
+  
   //All
   private apiUrlHumeAll = environment.apiHumeAll;
   private apiUrlTempAll = environment.apiTempAll;
@@ -22,6 +22,9 @@ export class SecureService {
   private apiUrlPirAll = environment.apiPirAll;
   private apiUrlAlcoAll = environment.apiAlcoAll;
   private apiUrlHumoAll = environment.apiHumoAll;
+
+  //filtro
+  private apiFiltro = environment.apiFiltro;
 
 
   constructor(private http: HttpClient) { }
@@ -63,5 +66,20 @@ export class SecureService {
   }
   getHumoAll(): Observable<SensoresAll[]> {
     return this.http.get<SensoresAll[]>(`${this.apiUrlHumoAll}/`);
+  }
+
+
+  buscarValoresPorRangoDeFechas(fechaInicial: string, fechaFinal: string): Observable<any> {
+    const url = `${this.apiFiltro}`; 
+    const params = { fecha_inicial: fechaInicial, fecha_final: fechaFinal };
+
+    return this.http.get(url, { params });
+  }
+
+  getRegistrosPorRangoDeFechas(filtro: any) {
+    const url = `${this.apiFiltro}`;
+
+    // Realiza la solicitud HTTP GET a la ruta /filtro con los parámetros de filtro
+    return this.http.get(url, { params: filtro });
   }
 }
