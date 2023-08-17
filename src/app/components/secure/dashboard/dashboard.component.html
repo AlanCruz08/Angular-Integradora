@@ -36,6 +36,9 @@
                                         <p class="card-text">{{ temperatura.length > 0 ? temperatura[0].valor : 'No disponible' }}
                                             {{ temperatura.length > 0 ? temperatura[0].unidades : '' }}
                                         </p>
+                                        <p class="card-text" *ngIf="temperatura.length > 0 && temperatura[0].valor > 32" style="color: red;">
+                                            Temperatura alta
+                                        </p>
                                     </div>
                                     
                                 </div>
@@ -59,6 +62,9 @@
                                     <p class="card-text">{{ distancia.length > 0 ? distancia[0].valor : 'No disponible' }}
                                         {{ distancia.length > 0 ? distancia[0].unidades : '' }}
                                     </p>
+                                    <p class="card-text" *ngIf="distancia.length > 0 && distancia[0].valor > 0 && distancia[0].valor < 50" style="color: red;">
+                                        Cuidado muy cerca del sensor
+                                    </p>
                                 </div> 
                             </div>
                                 <!-- Cuarta card con imagen -->
@@ -69,6 +75,9 @@
                                         <h1 class="card-title">Movimiento</h1>
                                         <p class="card-text">{{ pir.length > 0 ? pir[0].valor : 'No disponible' }}
                                             {{ pir.length > 0 ? pir[0].unidades : '' }}
+                                        </p>
+                                        <p class="card-text" *ngIf="pir.length > 0 && pir[0].valor === 1" style="color: green;">
+                                            Hay movimiento
                                         </p>
                                     </div>
                                 </div>
@@ -81,6 +90,9 @@
                                         <p class="card-text">{{ alcohol.length > 0 ? alcohol[0].valor : 'No disponible' }}
                                             {{ alcohol.length > 0 ? alcohol[0].unidades : '' }}
                                         </p>
+                                        <p class="card-text" *ngIf="alcohol.length > 0 && alcohol[0].valor > 75" style="color: red;">
+                                            Niveles altos de alcohol
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- Sexta card con imagen -->
@@ -91,6 +103,9 @@
                                         <h1 class="card-title">Humo</h1>
                                         <p class="card-text">{{ humo.length > 0 ? humo[0].valor : 'No disponible' }}
                                             {{ humo.length > 0 ? humo[0].unidades : '' }}
+                                        </p>
+                                        <p class="card-text" *ngIf="humo.length > 0 && humo[0].valor > 20" style="color: red;">
+                                            Los niveles de humo son altos
                                         </p>
                                     </div>
                                 </div>
