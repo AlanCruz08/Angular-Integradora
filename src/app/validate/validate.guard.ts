@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { LoginService } from '../services/login/login.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,37 +11,29 @@ export class validateGuard implements CanActivate {
 
   constructor(private apiService: LoginService, private router: Router) { }
 
-  async canActivate(): Promise<boolean> {
-    const isTokenValid = await this.validarToken();
-
-    if (isTokenValid) {
-      // El token es válido
-      return true;
-    } else {
-      // El token no es válido
-      this.router.navigate(['/inicio']);
-      return false;
-    }
-  }
-
-  async validarToken(): Promise<Boolean> {
+  async canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Promise<boolean | UrlTree> {
     const token = localStorage.getItem('token');
 
-    if (token) {
-      try {
-        const isTokenValid = await this.apiService.validacion(token);
-        return isTokenValid;  // Asumiendo que apiService.validacion devuelve boolean
-      } catch (error) {
-        // Hubo un error al verificar el token
+    if (!token) {
+      return this.router.createUrlTree(['/inicio']); // Usuario no autenticado
+    }
+
+    try {
+      const isTokenValid = await this.apiService.validacion(token);
+      
+      if (isTokenValid) {
+        return true; // Token válido, acceso permitido
+      } else {
         localStorage.removeItem('token');
-        // console.error('Error al verificar el token:', error);
-        this.router.navigate(['/inicio']);
-        return false;
+        return this.router.createUrlTree(['/inicio']); // Token no válido
       }
-    } else {
-      // El usuario no está autenticado
-      this.router.navigate(['/inicio']);
-      return false;
+    } catch (error) {
+      console.error('Error al verificar el token:', error);
+      localStorage.removeItem('token');
+      return this.router.createUrlTree(['/inicio']); // Error al verificar el token
     }
   }
 }

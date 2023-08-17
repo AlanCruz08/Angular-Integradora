@@ -30,19 +30,16 @@ export class LoginService {
       return false;
     }
   }
-  
-  //funcion donde el token de local storage si sea del usuario
-  async validarToken(): Promise<Boolean> {
-    const token = localStorage.getItem('token');
-    if(token){
-      return await this.validacion(token);
-    }
-    return false;
-  }
 
-  
-  
-  
+  async validarToken(token: string): Promise<boolean> {
+    try {
+      const response = await this.http.get<ApiResponse>(`${this.apiUser}/validate`).toPromise();
+      return response?.data === true;
+    } catch (error) {
+      console.error('Error al verificar el token:', error);
+      return false;
+    }
+  }
 
 
   getUser(): Observable<User[]> {
