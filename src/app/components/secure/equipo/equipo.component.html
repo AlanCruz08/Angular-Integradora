@@ -1,7 +1,7 @@
 <!-- Componente de página de inicio -->
 <div class="d-flex flex-column min-vh-100">
     <!-- Componente de navegación de la página de inicio -->
-    <app-nav-init></app-nav-init>
+    <app-nav></app-nav>
 
     <!-- Contenido principal con color de fondo personalizado y opacidad -->
     <div class="content-container text-center" style="background-color: rgba(110, 98, 215, 0.8); flex-grow: 1;">
@@ -16,36 +16,40 @@
             <div class="row mt-4 justify-content-center">
                 <!-- Primera card -->
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card h-100"> <!-- Agregamos la clase 'h-100' para asegurarnos de que todas las cards tengan la misma altura -->
                         <img src="/assets/fotos/memo.jpeg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body">
-                            <p class="card-text">Jose Guillermo Escobar Flores <br> 21170173 <br> TIDSM 6A TN</p>
+                            <h3>Jose Guillermo Escobar Flores</h3>
+                            <p class="card-text"> 21170173 <br> TIDSM 6A TN</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Resto de las cards... -->
                 <div class="col-md-3">
-                    <div class="card">
-                        <img src="/assets/imagen1.jpg" class="card-img-top" alt="Imagen 1">
+                    <div class="card h-100"> <!-- Misma clase 'h-100' para las otras cards -->
+                        <img src="/assets/fotos/alan.jpeg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body">
-                            <p class="card-text">Alan Cruz Martinez <br> 21170195 <br> TIDSM 6A TN </p>
+                            <h3>Alan Cruz Martinez</h3>
+                            <p class="card-text">21170195 <br> TIDSM 6A TN </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card h-100"> <!-- Misma clase 'h-100' para las otras cards -->
                         <img src="/assets/fotos/jorge.jpg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body">
-                            <p class="card-text">Jorge Reyes Courpus <br> 21170214 <br> TIDSM 6A TN</p>
+                            <h3>Jorge Reyes Courpus</h3>
+                            <p class="card-text"> 21170214 <br> TIDSM 6A TN</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card h-100"> <!-- Misma clase 'h-100' para las otras cards -->
                         <img src="/assets/fotos/issac.jpeg" class="card-img-top" alt="Imagen 1">
                         <div class="card-body">
-                            <p class="card-text">Cristo Issac Garcia Rivas <br> 20170026 <br> TIDSM 6A TN.</p>
+                            <h3>Cristo Issac Garcia Rivas</h3>
+                            <p class="card-text"> 20170026 <br> TIDSM 6A TN.</p>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'env';
 import { Observable } from 'rxjs';
 import { Sensor, SensoresAll } from 'src/app/interface/sensores';
+import { Login, User } from '../interface/login';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,9 @@ export class SecureService {
 
   //filtro
   private apiFiltro = environment.apiFiltro;
+
+  //usuario
+  private user = environment.user;
 
 
   constructor(private http: HttpClient) { }
@@ -87,5 +91,11 @@ export class SecureService {
 
     // Realiza la solicitud HTTP GET a la ruta /filtro con los parámetros de filtro
     return this.http.get(url, { params: filtro });
+  }
+
+  obtenerDatosUsuario(): Observable<User> {
+   
+    const url = `${this.user}/usuario`; // Cambiar la URL a tu endpoint para obtener datos de usuario
+    return this.http.get<User>(url);
   }
 }

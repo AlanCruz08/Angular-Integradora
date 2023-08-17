@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Sensor } from 'src/app/interface/sensores'; // Importar la interfaz Temperatura
 import { SecureService } from 'src/app/services/secure.service'; // Importar el servicio SecureService
+import { Login } from 'src/app/interface/login'; // Importar la interfaz Usuario
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +18,7 @@ export class DashboardComponent implements OnInit {
   pir: Sensor[] = []; // Arreglo para almacenar los datos de pir
   alcohol: Sensor[] = []; // Arreglo para almacenar los datos de alcohol
   humo: Sensor[] = []; // Arreglo para almacenar los datos de humo
+  
 
   
   private intervalId: any; // Variable para almacenar el ID del intervalo
