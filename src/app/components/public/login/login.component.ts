@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  login: Login = { email: '', password: '' };
+  login: Login = { name:'', email: '', password: '' };
   error: string | null;
 
   constructor(private loginService: LoginService, private router: Router, private fb:FormBuilder) {
