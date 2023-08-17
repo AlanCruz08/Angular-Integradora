@@ -1,0 +1,47 @@
+<div class="d-flex flex-column min-vh-100">
+    <app-nav-login></app-nav-login>
+    <div class="content-container"
+        style="background-color: rgba(110, 98, 215, 0.6); flex-grow: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+        <!-- Imagen en el extremo izquierdo -->
+        <img src="/assets/svg/log.svg" alt="Imagen izquierda" class="image-left">
+        <div class="card border-2 border-primary rounded"
+            style="width: 300px; height: 550px; background-color: rgba(255, 255, 255, 0.8);">
+            <div class="card-body">
+                <!-- Imagen centrada en la parte superior -->
+                <div style="text-align: center; margin-top: 10px;">
+                    <img src="/assets/svg/logo1.svg" alt="Pequeña imagen" style="width: 50px; height: 50px;">
+                </div>
+                <h5 class="card-title text-center">Verificar Codigo</h5>
+                <form (ngSubmit)="VerificarCodigo()" [formGroup]="verifyForm" class="form-container">
+                    <div class="mb-3 text-center">
+                        <label for="codigo" class="form-label">Ingresa el código:</label>
+                        <input type="text" formControlName="codigo" class="form-control custom-input" name="codigo"
+                            placeholder="Ingrese su código">
+                        <div *ngIf="verifyForm.get('codigo')?.invalid && (verifyForm.get('codigo')?.dirty || verifyForm.get('codigo')?.touched)"
+                            class="error-message">
+                            <p class="text-center text-danger" *ngIf="verifyForm.get('codigo')?.errors?.['required']">
+                                El código es requerido.
+                            </p>
+                            <p class="text-center text-danger" *ngIf="verifyForm.get('codigo')?.errors?.['maxlength']">
+                                El código debe ser de 4 dígitos.
+                            </p>
+                        </div>
+                    </div>
+                    <div *ngIf="error" class="error-message">
+                        <p class="text-center text-danger">{{ error }}</p>
+                    </div>
+                    <div class="d-grid gap-3">
+                        <button type="submit" class="btn btn-primary" [disabled]="verifyForm.controls['codigo'].invalid">Verificar</button>
+                        <button type="button" class="btn btn-secondary mt-2" (click)="goBack()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Imagen en el extremo derecho -->
+        <img src="/assets/svg/log2.svg" alt="Imagen derecha" class="image-right">
+    </div>
+
+    <!-- Componente de pie de página -->
+    <app-footer></app-footer>
+</div>

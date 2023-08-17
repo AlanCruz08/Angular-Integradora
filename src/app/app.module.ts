@@ -21,6 +21,8 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { VerifyComponent } from './components/public/verify/verify.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -45,15 +47,14 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     AlcoholComponent,
     HumoComponent,
     NotFoundComponent,
-    
-  
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    
+    ReactiveFormsModule,
   ],
   providers: [
     {

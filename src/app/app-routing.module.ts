@@ -13,26 +13,28 @@ import { PirComponent } from './components/sensores/pir/pir.component';
 import { DistanciaComponent } from './components/sensores/distancia/distancia.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { validateGuard } from './validate/validate.guard';
+import { VerifyComponent } from './components/public/verify/verify.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  {path: 'inicio',component:InicioComponent},
+  { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrerComponent },
-  { path: 'dashboard', component: DashboardComponent,canActivate: [validateGuard] },
-  { path: 'equipo', component: EquipoComponent,canActivate: [validateGuard] },
+  { path: 'verify', component: VerifyComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [validateGuard] },
+  { path: 'equipo', component: EquipoComponent, canActivate: [validateGuard] },
 
 
   //sensores
-  {path: 'temperatura', component:TemperaturaComponent,canActivate: [validateGuard]},
-  {path: 'humedad', component:HumedadComponent,canActivate: [validateGuard]},
-  {path:'humo', component:HumoComponent,canActivate: [validateGuard]},
-  {path:'alcohol', component:AlcoholComponent,canActivate: [validateGuard]},
-  {path:'pir',component:PirComponent,canActivate: [validateGuard]},
-  {path:'distancia',component:DistanciaComponent,canActivate: [validateGuard]},
+  { path: 'temperatura', component: TemperaturaComponent, canActivate: [validateGuard] },
+  { path: 'humedad', component: HumedadComponent, canActivate: [validateGuard] },
+  { path: 'humo', component: HumoComponent, canActivate: [validateGuard] },
+  { path: 'alcohol', component: AlcoholComponent, canActivate: [validateGuard] },
+  { path: 'pir', component: PirComponent, canActivate: [validateGuard] },
+  { path: 'distancia', component: DistanciaComponent, canActivate: [validateGuard] },
 
 
-  { path: '**', component:NotFoundComponent }
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

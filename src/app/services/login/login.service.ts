@@ -41,7 +41,6 @@ export class LoginService {
     }
   }
 
-
   getUser(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUser}/`); 
   }
@@ -77,7 +76,12 @@ export class LoginService {
   {
     const headers = new HttpHeaders().set('X-Skip-Interceptor', 'true');
     return this.http.post(`${this.apiUser}/register`, credenciales, { headers: headers });
-    
+  }
+
+  verify(credenciales: Register)
+  {
+    const headers = new HttpHeaders().set('X-Skip-Interceptor', 'true');
+    return this.http.post(`${this.apiUser}/verificar`, credenciales, { headers: headers });
   }
 
   setAuthToken(token: string)

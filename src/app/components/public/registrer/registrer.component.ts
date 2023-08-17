@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Register } from 'src/app/interface/login';
 import { LoginService as registerService } from 'src/app/services/login/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
@@ -12,10 +12,10 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class RegistrerComponent {
 
-   register: Register = { name: '', email: '', password: '' };
+  register: Register = { name: '', email: '', password: '' };
   error!: string | null;
 
-  constructor(private registerService: registerService, private router: Router) {
+  constructor(private registerService: registerService, private router: Router, private route: ActivatedRoute) {
     this.error = null;
   }
 
@@ -29,18 +29,18 @@ export class RegistrerComponent {
 
   EnvioDatos() {
     if (this.register.email && this.register.password && this.register.name && this.register.password.length >= 8) {
-      console.log("enviar datos");
       this.registerService.register(this.register).subscribe(
         (response: any) => {
           this.error = null;
-          const token = response.access_token;
-          localStorage.setItem('token', token);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/verify'], {
+            relativeTo: this.route,
+            state: { registerData: this.register }
+          });
         },
         error => {
           console.error('Error en la solicitud:', error);
           this.error = error && error.error && error.error.msg ? error.error.msg : 'Error desconocido.';
-          
+
           setTimeout(() => {
             this.error = null; // Restablecer el valor a null para regresar al estado default
           }, 2000);
@@ -54,7 +54,7 @@ export class RegistrerComponent {
     }
   }
 
-  goBack(){
+  goBack() {
     window.history.back();
   }
 
