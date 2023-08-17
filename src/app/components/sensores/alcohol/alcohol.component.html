@@ -8,22 +8,19 @@
             <button class="btn btn-back" [routerLink]="'/dashboard'">
                 <span class="btn-text">Atrás</span>
             </button>
-            <h1 class="text-center mb-4"
-                style="font-family: Arial, sans-serif; font-weight: bold; font-size: 24px;">Sensor Alcohol</h1>
-            <!-- Filtro de búsqueda -->
-           <!--  <div class="row mb-3">
-                <div class="col-md-4 offset-md-4 d-flex justify-content-center">
-                    <div class="input-group">
-                        <input type="date" id="fechaBusqueda" [(ngModel)]="fechaBusqueda"
-                            style="width: 150px; border-radius: 8px; border: 1px solid #ccc; padding: 5px 10px;">
+            <h1 class="text-center mb-4" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 24px;">
+                Sensor Alcohol</h1>
+            <form (ngSubmit)="buscarValores()">
+                <label for="fechaInicial">Fecha Inicial:</label>
+                <input type="date" id="fechaInicial" name="fechaInicial" [(ngModel)]="fechaInicial"
+                    class="custom-input-sm">
 
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" style="border-radius: 8px; margin-left: 10px;"
-                                (click)="buscarPorFecha()">Buscar</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+                <label for="fechaFinal">Fecha Final:</label>
+                <input type="date" id="fechaFinal" name="fechaFinal" [(ngModel)]="fechaFinal" class="custom-input-sm">
+
+                <button type="submit" class="btn btn-sm btn-primary">Buscar</button>
+            </form>
+
 
             <hr class="my-3"> <!-- Separador horizontal -->
 
@@ -38,16 +35,19 @@
                                 <th class="text-center bg-custom">Valor</th>
                                 <th class="text-center bg-custom">Unidades</th>
                                 <th class="text-center bg-custom">Fecha</th>
+                                <th class="text-center bg-custom">Hora</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Bucle para mostrar los valores -->
                             <tr *ngFor="let valor of (fechaBusqueda ? valoresFiltrados : valoresAlcohol); let i = index"
                                 class="align-middle">
                                 <td class="text-center">{{ i + 1 }}</td>
                                 <td class="text-center">Alcohol</td>
                                 <td class="text-center">{{ valor.valor }}</td>
-                                <td class="text-center">Grados</td>
+                                <td class="text-center">{{ valor.unidades }}</td>
                                 <td class="text-center">{{ valor.fecha }}</td>
+                                <td class="text-center">{{ valor.hora }}</td>
                             </tr>
                         </tbody>
                     </table>

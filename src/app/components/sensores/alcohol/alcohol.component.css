@@ -54,13 +54,24 @@
 
 /* Estilos para el encabezado de la tabla */
 .thead-custom th {
-    background-color: #752dbd; /* Cambia este color según tus preferencias */
+    background-color: #752dbd;
+    /* Cambia este color según tus preferencias */
     color: #fff;
 }
 
+/* Estilos personalizados para los inputs más pequeños */
+.custom-input-sm {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    /* Agregar espacio inferior */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
 
-
-
-
-
-
+/* Estilos para el botón de búsqueda más pequeño */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}

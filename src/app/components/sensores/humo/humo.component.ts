@@ -12,7 +12,9 @@ import { SensoresAll } from 'src/app/interface/sensores';
 export class HumoComponent implements OnInit {
   valoresHumo: SensoresAll[] = [];
   valoresFiltrados: SensoresAll[] = [];      // Arreglo para almacenar los valores filtrados
-  fechaBusqueda: string = '';
+  fechaBusqueda: boolean = false; // Indica si hay una búsqueda activa o no
+  fechaInicial: string = ''; // Fecha inicial del rango de búsqueda
+  fechaFinal: string = ''; // Fecha final del rango de búsqueda
 
   constructor(private router: Router, private secureService: SecureService) { }
 
@@ -41,37 +43,32 @@ export class HumoComponent implements OnInit {
       }
     );
   }
-  /* buscarPorFecha(): void {
-    if (this.fechaBusqueda) {
-      console.log('Fecha de búsqueda:', this.fechaBusqueda);
+  buscarValores(): void {
+    const filtro = {
+      sensor_id: 5, // Cambia este valor al ID del sensor que desees
+      fecha_inicial: this.fechaInicial,
+      fecha_final: this.fechaFinal
+    };
 
-      // Convertir la fecha de búsqueda al formato adecuado
-      const fechaBusquedaFormatted = this.formatoFechaBusqueda(this.fechaBusqueda);
+    console.log('Filtro enviado al servidor:', filtro);
 
-      // Filtrar los valores por la fecha de búsqueda
-      this.valoresFiltrados = this.valoresHumo.filter((valor) => {
-        console.log('Comparando fechas:', valor.fecha, fechaBusquedaFormatted);
-        return this.sonFechasIguales(valor.fecha, fechaBusquedaFormatted);
-      });
+    this.secureService.getRegistrosPorRangoDeFechas(filtro).subscribe(
+      (response: any) => {
+        console.log('Respuesta del servidor:', response);
 
-      console.log('Valores filtrados:', this.valoresFiltrados);
-    } else {
-      this.valoresFiltrados = [];   // Si no hay fecha de búsqueda, vaciar los valores filtrados
-    }
+        if (Array.isArray(response.data)) {
+          this.valoresFiltrados = response.data; // Asigna los valores filtrados a la variable
+          console.log('Valores filtrados asignados:', this.valoresFiltrados);
+          this.fechaBusqueda = true; // Marca que hay una búsqueda activa
+        } else {
+          console.error('Los datos filtrados no son válidos:', response.data);
+          this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener los valores filtrados:', error);
+        this.fechaBusqueda = false; // Marca que no hay una búsqueda activa
+      }
+    );
   }
-
-  // Función para convertir la fecha de búsqueda al formato adecuado
-  formatoFechaBusqueda(fecha: string): string {
-    const dateParts = fecha.split('-');
-    const day = dateParts[2];
-    const month = dateParts[1];
-    const year = dateParts[0];
-    return `${day}/${month}/${year}`;
-  }
-
-  // Función para comparar si dos fechas son iguales (solo la parte de la fecha, sin hora)
-  sonFechasIguales(fecha1: string, fecha2: string): boolean {
-    return fecha1.split(' ')[0] === fecha2;
-  } */
-
 }
