@@ -195,7 +195,7 @@ export class DashboardComponent implements OnInit {
       this.obtenerPir();
       this.obtenerAlcohol();
       this.obtenerHumo();
-    }, 30000); // Ejecutar cada 30 segundos (30000 milisegundos)
+    }, 20000); // Ejecutar cada 20 segundos (20000 milisegundos)
   }
 
   detenerIntervalo(): void {
