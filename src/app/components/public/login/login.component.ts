@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   login: Login = { name:'', email: '', password: '' };
   error: string | null;
@@ -21,7 +22,7 @@ export class LoginComponent {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/dashboard']);
     }
   }
 

@@ -17,11 +17,14 @@ import { VerifyComponent } from './components/public/verify/verify.component';
 import { VerifyGuard } from './guard/route-verify.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+
   { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrerComponent },
   { path: 'verify', component: VerifyComponent, canActivate: [VerifyGuard] },
+
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [validateGuard] },
   { path: 'equipo', component: EquipoComponent, canActivate: [validateGuard] },
 

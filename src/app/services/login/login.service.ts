@@ -3,7 +3,7 @@ import { Observable,throwError,catchError } from 'rxjs';
 import { User, UserC } from 'src/app/interface/login';
 import { environment } from 'env';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Login, Register, Deslogueo } from 'src/app/interface/login';
+import { Login, Register, Logout } from 'src/app/interface/login';
 
 
 interface ApiResponse{
@@ -26,17 +26,6 @@ export class LoginService {
       const response = await this.http.get<ApiResponse>(`${this.apiUser}/validate`).toPromise();
       return response?.data === true;
     }catch (error) {
-      // console.error('Error al verificar el token:', error);
-      return false;
-    }
-  }
-
-  async validarToken(token: string): Promise<boolean> {
-    try {
-      const response = await this.http.get<ApiResponse>(`${this.apiUser}/validate`).toPromise();
-      return response?.data === true;
-    } catch (error) {
-      console.error('Error al verificar el token:', error);
       return false;
     }
   }
@@ -45,16 +34,12 @@ export class LoginService {
     return this.http.get<User[]>(`${this.apiUser}/`); 
   }
 
-  Deslogueo(credenciales: Deslogueo): Observable<any>
-  {
-    const token =localStorage.getItem('token');
+  logout(credentials: Logout): Observable<any> {
+    const token = localStorage.getItem('token');
 
-    if(token)
-    {
-      const headers = new HttpHeaders({"Accept": "application/json", "Authorization": `Bearer ${token}` });
-      return this.http.post(`${this.apiUser}/logout`, credenciales, { headers: headers }).pipe(
+    if (token) {
+      return this.http.post(`${this.apiUser}/logout`, credentials).pipe(
         catchError((error) => {
-          // Manejar el error aquí según tus necesidades
           return throwError(error);
         })
       );
@@ -63,7 +48,6 @@ export class LoginService {
       console.log('Token not found');
       return throwError('Token not found');
     }
-    
   }
 
   login(credenciales: Login)

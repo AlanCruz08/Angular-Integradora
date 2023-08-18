@@ -16,8 +16,8 @@ export interface User{
     email: string;
 }
 
-export interface Deslogueo{
-    token: string | null;
+export interface Logout{
+    token?: string;
 }
 
 export interface token{

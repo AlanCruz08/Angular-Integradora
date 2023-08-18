@@ -80,7 +80,7 @@
                                         <p class="card-text">{{ alcohol.length > 0 ? alcohol[0].valor : 'No disponible' }}
                                             {{ alcohol.length > 0 ? alcohol[0].unidades : '' }}
                                         </p>
-                                        <p class="card-text" *ngIf="alcohol.length > 0 && alcohol[0].valor > 75" style="color: red;">
+                                        <p class="card-text" *ngIf="alcohol.length > 0 && alcohol[0].valor > 400" style="color: red;">
                                             Niveles altos de alcohol
                                         </p>
                                     </div>

@@ -32,8 +32,8 @@ export class VerifyComponent implements OnInit { // Implementar OnInit
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      if (params['registerData']) { // Cambio aquí
-        this.registerData = JSON.parse(params['registerData']); // Cambio aquí
+      if (params['registerData']) {
+        this.registerData = JSON.parse(params['registerData']);
       }
     });
   }

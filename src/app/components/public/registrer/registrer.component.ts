@@ -23,7 +23,7 @@ export class RegistrerComponent {
     const token = localStorage.getItem('token');
     if (token) {
       // Redirigir al usuario a la página principal
-      this.router.navigate(['/register']);
+      this.router.navigate(['/dashboard']);
     }
   }
 
