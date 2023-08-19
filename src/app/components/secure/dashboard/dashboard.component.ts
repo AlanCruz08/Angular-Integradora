@@ -18,10 +18,7 @@ export class DashboardComponent implements OnInit {
   pir: Sensor[] = []; // Arreglo para almacenar los datos de pir
   alcohol: Sensor[] = []; // Arreglo para almacenar los datos de alcohol
   humo: Sensor[] = []; // Arreglo para almacenar los datos de humo
-  
-  
 
-  
   private intervalId: any; // Variable para almacenar el ID del intervalo
 
   constructor(private router: Router, private secureService: SecureService) { }
@@ -161,7 +158,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  
+
 
   // Método para redirigir a un componente específico en función del nombre recibido
   redirectToComponent(componentName: string) {

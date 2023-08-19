@@ -4,9 +4,11 @@ import { environment } from 'env';
 import { Observable } from 'rxjs';
 import { Sensor, SensoresAll } from 'src/app/interface/sensores';
 import { Login, User } from '../interface/login';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class SecureService {
   //Ultimo dato
   private apiUrlTemp = environment.apiTemp;
@@ -15,7 +17,7 @@ export class SecureService {
   private apiUrlPir = environment.apiPir;
   private apiUrlAlco = environment.apiAlco;
   private apiUrlHumo = environment.apiHumo;
-  
+
   //All
   private apiUrlHumeAll = environment.apiHumeAll;
   private apiUrlTempAll = environment.apiTempAll;
@@ -30,14 +32,12 @@ export class SecureService {
   //usuario
   private user = environment.user;
 
-
   constructor(private http: HttpClient) { }
-//Ultimo dato
+
+  //Ultimo dato
   getTemperatura(): Observable<Sensor[]> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ "Accept": "application/json", "Authorization": `Bearer ${token}` });
     const url = `${this.apiUrlTemp}/`;
-    return this.http.get<Sensor[]>(url, { headers });
+    return this.http.get<Sensor[]>(url);
   }
   getHumedad(): Observable<Sensor[]> {
     return this.http.get<Sensor[]>(`${this.apiUrlHum}/`);
@@ -55,15 +55,12 @@ export class SecureService {
     return this.http.get<Sensor[]>(`${this.apiUrlHumo}/`);
   }
 
-   //All
-  getHumedadAll(): Observable<SensoresAll[]> {
-    return this.http.get<SensoresAll[]>(`${this.apiUrlHumeAll}/`);
-
-  }
-
-  
+  //All
   getTemperaturaAll(): Observable<SensoresAll[]> {
     return this.http.get<SensoresAll[]>(`${this.apiUrlTempAll}/`);
+  }
+  getHumedadAll(): Observable<SensoresAll[]> {
+    return this.http.get<SensoresAll[]>(`${this.apiUrlHumeAll}/`);
   }
   getDistanciaAll(): Observable<SensoresAll[]> {
     return this.http.get<SensoresAll[]>(`${this.apiUrlDistAll}/`);
@@ -78,24 +75,19 @@ export class SecureService {
     return this.http.get<SensoresAll[]>(`${this.apiUrlHumoAll}/`);
   }
 
-
   buscarValoresPorRangoDeFechas(fechaInicial: string, fechaFinal: string): Observable<any> {
-    const url = `${this.apiFiltro}`; 
+    const url = `${this.apiFiltro}`;
     const params = { fecha_inicial: fechaInicial, fecha_final: fechaFinal };
-
     return this.http.get(url, { params });
   }
 
   getRegistrosPorRangoDeFechas(filtro: any) {
     const url = `${this.apiFiltro}`;
-
-    // Realiza la solicitud HTTP GET a la ruta /filtro con los parámetros de filtro
     return this.http.get(url, { params: filtro });
   }
 
   obtenerDatosUsuario(): Observable<User> {
-   
-    const url = `${this.user}/usuario`; // Cambiar la URL a tu endpoint para obtener datos de usuario
+    const url = `${this.user}/usuario`;
     return this.http.get<User>(url);
   }
 }

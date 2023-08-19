@@ -7,10 +7,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor() { }
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.headers.has('X-Skip-Interceptor')) {
       return next.handle(request); // Pasar la solicitud sin modificar
     }
@@ -18,6 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authToken = localStorage.getItem('token');
     const authRequest = request.clone({
       setHeaders: {
+        Accept: 'application/json',
         Authorization: `Bearer ${authToken}`,
       },
     });

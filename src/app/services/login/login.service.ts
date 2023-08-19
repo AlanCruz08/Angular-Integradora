@@ -5,21 +5,17 @@ import { environment } from 'env';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Login, Register, Logout } from 'src/app/interface/login';
 
-
 interface ApiResponse{
   data:boolean;
 }
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
-  headers: HttpHeaders;
   private apiUser = environment.apiUser;
 
-  constructor(private http: HttpClient) 
-  {
-    this.headers = new HttpHeaders({ "Accept": "application/json", "Ahutorization": "Bearer " });
-  }
+  constructor(private http: HttpClient) {}
 
   async validacion(token:string): Promise<Boolean> {
     try{
@@ -79,4 +75,3 @@ export class LoginService {
   }
 
 }
-

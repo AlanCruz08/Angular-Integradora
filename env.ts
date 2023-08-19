@@ -7,24 +7,18 @@ export const environment = {
     apiHumo: 'http://127.0.0.1:8000/api/feeds/humo/1',
 
     //all
-    apiHumeAll: 'http://127.0.0.1:8000/api/feeds/humedad',
-    apiTempAll: 'http://127.0.0.1:8000/api/feeds/temperatura',
-    apiDistAll: 'http://127.0.0.1:8000/api/feeds/distancia',
-    apiPirAll: 'http://127.0.0.1:8000/api/feeds/pir',
-    apiAlcoAll: 'http://127.0.0.1:8000/api/feeds/alcohol',
-    apiHumoAll: 'http://127.0.0.1:8000/api/feeds/humo',
+    apiHumeAll: 'http://127.0.0.1:8000/api/feeds/humedadAll',
+    apiTempAll: 'http://127.0.0.1:8000/api/feeds/temperaturaAll',
+    apiDistAll: 'http://127.0.0.1:8000/api/feeds/distanciaAll',
+    apiPirAll: 'http://127.0.0.1:8000/api/feeds/pirAll',
+    apiAlcoAll: 'http://127.0.0.1:8000/api/feeds/alcoholAll',
+    apiHumoAll: 'http://127.0.0.1:8000/api/feeds/humoAll',
 
-    //filtro
     apiFiltro:'http://127.0.0.1:8000/api/feeds/filtro',
-
 
     apiUser:'http://127.0.0.1:8000/api',
     webUrl : 'http://localhost:4200/',
     errorUrl : 'http://localhost:4200/404',
 
     user: 'http://127.0.0.1:8000/api/user'
-
-
-
-
 };

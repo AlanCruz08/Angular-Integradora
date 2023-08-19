@@ -3,12 +3,14 @@
     <app-nav-login></app-nav-login>
 
     <!-- Contenido principal con color de fondo personalizado y opacidad -->
-    <div class="content-container" style="background-color: rgba(110, 98, 215, 0.6); flex-grow: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+    <div class="content-container"
+        style="background-color: rgba(110, 98, 215, 0.6); flex-grow: 1; position: relative; display: flex; justify-content: center; align-items: center;">
         <!-- Imagen en el extremo izquierdo -->
         <img src="/assets/svg/log.svg" alt="Imagen izquierda" class="image-left">
-        
+
         <!-- Formulario de inicio de sesión con borde personalizado -->
-        <div class="card border-2 border-primary rounded" style="width: 300px; height: 550px; background-color: rgba(255, 255, 255, 0.8);">
+        <div class="card border-2 border-primary rounded"
+            style="width: 300px; height: 550px; background-color: rgba(255, 255, 255, 0.8);">
             <div class="card-body">
                 <!-- Imagen centrada en la parte superior -->
                 <div style="text-align: center; margin-top: 10px;">
@@ -19,37 +21,33 @@
                     <div class="mb-3 text-center">
                         <label for="name" class="form-label">Nombre: </label>
                         <input type="text" [(ngModel)]="register.name" #nameField="ngModel"
-                        class="form-control custom-input" name="name" placeholder="Ingrese su nombre"
-                        [required]="true">
+                            class="form-control custom-input" name="name" placeholder="Ingrese su nombre"
+                            [required]="true">
 
-                    <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)"
-                        class="error-message">
-                        <p class="text-center text-danger" *ngIf="nameField.errors?.['required']">El nombre es requerido.</p>
-                    </div>
+                        <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="error-message">
+                            <p class="text-center text-danger" *ngIf="nameField.errors?.['required']">El nombre es requerido.</p>
+                        </div>
                     </div>
                     <div class="mb-3 text-center">
                         <label for="email" class="form-label">Email: </label>
                         <input type="email" [(ngModel)]="register.email" #emailField="ngModel"
-                                class="form-control custom-input" name="email"
-                                placeholder="Ingrese su correo electrónico" [required]="true" email>
-                            <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)"
-                                class="error-message">
-                                <p class="text-center text-danger" *ngIf="emailField.errors?.['required']">El correo
-                                    electrónico es requerido.</p>
-                                <p class="text-center text-danger" *ngIf="emailField.errors?.['email']">El correo
-                                    electrónico no es válido.</p>
-                            </div>
+                            class="form-control custom-input" name="email" placeholder="Ingrese su correo electrónico"
+                            [required]="true" email>
+                        <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)"
+                            class="error-message">
+                            <p class="text-center text-danger" *ngIf="emailField.errors?.['required']">El correo electrónico es requerido.</p>
+                            <p class="text-center text-danger" *ngIf="emailField.errors?.['email']">El correo electrónico no es válido.</p>
+                        </div>
                     </div>
                     <div class="mb-3 text-center">
                         <label for="password" class="form-label">Contraseña:</label>
                         <input type="password" [(ngModel)]="register.password" #passwordField="ngModel"
-                        class="form-control custom-input" name="password" placeholder="Ingrese su contraseña"
-                        required>
-                    <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)"
-                        class="error-message">
-                        <p class="text-center text-danger" *ngIf="passwordField.errors?.['required']">La contraseña
-                            es requerida.</p>
-                    </div>
+                            class="form-control custom-input" name="password" placeholder="Ingrese su contraseña"
+                            required>
+                        <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)"
+                            class="error-message">
+                            <p class="text-center text-danger" *ngIf="passwordField.errors?.['required']">La contraseña es requerida.</p>
+                        </div>
                     </div>
                     <div *ngIf="error" class="error-message">
                         <p class="text-center text-danger">{{ error }}</p>
@@ -61,7 +59,7 @@
                 </form>
             </div>
         </div>
-        
+
         <!-- Imagen en el extremo derecho -->
         <img src="/assets/svg/log2.svg" alt="Imagen derecha" class="image-right">
     </div>
