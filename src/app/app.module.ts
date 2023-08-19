@@ -24,10 +24,6 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { VerifyComponent } from './components/public/verify/verify.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

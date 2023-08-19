@@ -12,7 +12,7 @@ import { AlcoholComponent } from './components/sensores/alcohol/alcohol.componen
 import { PirComponent } from './components/sensores/pir/pir.component';
 import { DistanciaComponent } from './components/sensores/distancia/distancia.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
-import { validateGuard } from './validate/validate.guard';
+import { validateGuard } from './guard/validate.guard';
 import { VerifyComponent } from './components/public/verify/verify.component';
 import { VerifyGuard } from './guard/route-verify.guard';
 
@@ -24,19 +24,15 @@ const routes: Routes = [
   { path: 'register', component: RegistrerComponent },
   { path: 'verify', component: VerifyComponent, canActivate: [VerifyGuard] },
 
-
   { path: 'dashboard', component: DashboardComponent, canActivate: [validateGuard] },
   { path: 'equipo', component: EquipoComponent, canActivate: [validateGuard] },
 
-
-  //sensores
   { path: 'temperatura', component: TemperaturaComponent, canActivate: [validateGuard] },
   { path: 'humedad', component: HumedadComponent, canActivate: [validateGuard] },
   { path: 'humo', component: HumoComponent, canActivate: [validateGuard] },
   { path: 'alcohol', component: AlcoholComponent, canActivate: [validateGuard] },
   { path: 'pir', component: PirComponent, canActivate: [validateGuard] },
   { path: 'distancia', component: DistanciaComponent, canActivate: [validateGuard] },
-
 
   { path: '**', component: NotFoundComponent }
 ];
