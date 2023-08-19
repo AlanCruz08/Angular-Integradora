@@ -86,8 +86,5 @@ export class SecureService {
     return this.http.get(url, { params: filtro });
   }
 
-  obtenerDatosUsuario(): Observable<User> {
-    const url = `${this.user}/usuario`;
-    return this.http.get<User>(url);
-  }
+  
 }
