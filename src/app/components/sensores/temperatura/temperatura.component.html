@@ -40,8 +40,7 @@
                         </thead>
                         <tbody>
                             <!-- Bucle para mostrar los valores -->
-                            <tr *ngFor="let valor of (fechaBusqueda ? valoresFiltrados : valoresTemperatura); let i = index"
-                                class="align-middle">
+                            <tr *ngFor="let valor of valoresPaginados; let i = index" class="align-middle">
                                 <td class="text-center">{{ i + 1 }}</td>
                                 <td class="text-center">Temperatura</td>
                                 <td class="text-center">{{ valor.valor }}</td>
@@ -52,6 +51,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination-container d-flex justify-content-center">
+                    <button class="btn btn-secondary" (click)="changePage(-1)" [disabled]="currentPage === 1">Anterior</button>
+                    <span class="mx-2">{{ currentPage }} / {{ totalPages }}</span>
+                    <button class="btn btn-secondary" (click)="changePage(1)" [disabled]="currentPage === totalPages">Siguiente</button>
+                  </div>
             </div>
         </div>
     </div>
