@@ -23,7 +23,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { VerifyComponent } from './components/public/verify/verify.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
+
   ],
   providers: [
     {
