@@ -1,201 +1,152 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Sensor } from 'src/app/interface/sensores'; // Importar la interfaz Temperatura
-import { SecureService } from 'src/app/services/secure.service'; // Importar el servicio SecureService
-import { Login } from 'src/app/interface/login'; // Importar la interfaz Usuario
-
+import { Sensor, SensorInfo } from 'src/app/interface/sensores';
+import { SecureService } from 'src/app/services/secure.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  sensores: SensorInfo[] = [
+    {
+      nombre: 'Temperatura',
+      imagen: '/assets/sensores/temperatura.svg',
+      ruta: 'temperatura',
+      datos: [],
+      advertencia: 'Temperatura alta',
+      umbral: 32
+    },
+    {
+      nombre: 'Humedad',
+      imagen: '/assets/sensores/humedad.svg',
+      ruta: 'humedad',
+      datos: [],
+      advertencia: 'Humedad alta',
+      umbral: 80
+    },
+    {
+      nombre: 'Distancia',
+      imagen: '/assets/sensores/distancia.svg',
+      ruta: 'distancia',
+      datos: [],
+      advertencia: 'Cuidado muy cerca del sensor',
+      umbral: 50
+    },
+    {
+      nombre: 'Movimiento',
+      imagen: '/assets/sensores/movimiento.svg',
+      ruta: 'pir',
+      datos: [],
+      advertencia: 'Hay movimiento',
+      umbral: 1
+    },
+    {
+      nombre: 'Alcohol',
+      imagen: '/assets/sensores/alcohol.svg',
+      ruta: 'alcohol',
+      datos: [],
+      advertencia: 'Niveles altos de alcohol',
+      umbral: 400
+    },
+    {
+      nombre: 'Humo',
+      imagen: '/assets/sensores/humo.svg',
+      ruta: 'humo',
+      datos: [],
+      advertencia: 'Los niveles de humo son altos',
+      umbral: 20
+    },
+    // Agregar más sensores aquí
+  ];
 
-  temperatura: Sensor[] = []; // Arreglo para almacenar los datos de temperatura
-  humedad: Sensor[] = []; // Arreglo para almacenar los datos de humedad
-  distancia: Sensor[] = []; // Arreglo para almacenar los datos de distancia
-  pir: Sensor[] = []; // Arreglo para almacenar los datos de pir
-  alcohol: Sensor[] = []; // Arreglo para almacenar los datos de alcohol
-  humo: Sensor[] = []; // Arreglo para almacenar los datos de humo
-
-  private intervalId: any; // Variable para almacenar el ID del intervalo
+  private intervalId: any;
 
   constructor(private router: Router, private secureService: SecureService) { }
 
   ngOnInit(): void {
-    this.obtenerTemperatura(); // Llamar al método para obtener temperaturas al inicializar el componente
-    this.obtenerHumedad();
-    this.obtenerDistancia();
-    this.obtenerPir();
-    this.obtenerAlcohol();
-    this.obtenerHumo();
-
-    this.iniciarIntervalo(); // Llamar al método para iniciar el intervalo al inicializar el componente
+    this.inicializarDatosSensores();
+    this.inicializarIntervalo();
   }
 
   ngOnDestroy(): void {
     this.detenerIntervalo();
   }
 
-  // Método para obtener los datos de temperatura desde el servicio
-  obtenerTemperatura(): void {
-    this.secureService.getTemperatura().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.temperatura = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.temperatura);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.temperatura = [response.data];
-          console.log(this.temperatura);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-  // Método para obtener los datos de humedad desde el servicio
-  obtenerHumedad(): void {
-    this.secureService.getHumedad().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.humedad = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.humedad);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.humedad = [response.data];
-          console.log(this.humedad);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-  // Método para obtener los datos de distancia desde el servicio
-  obtenerDistancia(): void {
-    this.secureService.getDistancia().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.distancia = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.distancia);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.distancia = [response.data];
-          console.log(this.distancia);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-  // Método para obtener los datos de pir desde el servicio
-  obtenerPir(): void {
-    this.secureService.getPir().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.pir = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.pir);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.pir = [response.data];
-          console.log(this.pir);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-  // Método para obtener los datos de alcohol desde el servicio
-  obtenerAlcohol(): void {
-    this.secureService.getAlcohol().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.alcohol = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.alcohol);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.alcohol = [response.data];
-          console.log(this.alcohol);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-  // Método para obtener los datos de humo desde el servicio
-  obtenerHumo(): void {
-    this.secureService.getHumo().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.data)) {
-          this.humo = response.data; // Asignar el arreglo de temperaturas al arreglo local
-          console.log(this.humo);
-        } else if (response.data && typeof response.data === 'object') {
-          // Si es un objeto individual, crea un array con ese objeto
-          this.humo = [response.data];
-          console.log(this.humo);
-        } else {
-          console.error('Los datos de temperatura no son válidos:', response.data);
-        }
-      },
-      (error: any) => {
-        console.error('Error al obtener las temperaturas:', error);
-      }
-    );
-  }
-
-
-  // Método para redirigir a un componente específico en función del nombre recibido
-  redirectToComponent(componentName: string) {
-    switch (componentName) {
-      case 'temperatura':
-        this.router.navigate(['/temperatura']);
-        break;
-      case 'humedad':
-        this.router.navigate(['/humedad']);
-        break;
-      case 'humo':
-        this.router.navigate(['/humo']);
-        break;
-      case 'alcohol':
-        this.router.navigate(['/alcohol']);
-        break;
-      case 'pir':
-        this.router.navigate(['/pir']);
-        break;
-      case 'distancia':
-        this.router.navigate(['/distancia']);
-        break;
+  inicializarDatosSensores(): void {
+    for (const infoSensor of this.sensores) {
+      this.obtenerDatosSensor(infoSensor);
     }
   }
 
-  iniciarIntervalo(): void {
+  obtenerDatosSensor(infoSensor: SensorInfo): void {
+    const funcionServicio = this.obtenerFuncionServicio(infoSensor.nombre.toLowerCase());
+    if (funcionServicio) {
+      funcionServicio.subscribe(
+        (respuesta: any) => {
+          // Procesar la respuesta y asignar datos a infoSensor.datos
+          if (Array.isArray(respuesta.data)) {
+            infoSensor.datos = respuesta.data;
+          } else if (respuesta.data && typeof respuesta.data === 'object') {
+            infoSensor.datos = [respuesta.data];
+          } else {
+            console.error('Los datos del sensor no son válidos:', respuesta.data);
+          }
+        },
+        (error: any) => {
+          console.error('Error al obtener los datos del sensor:', error);
+        }
+      );
+    }
+  }
+
+
+  obtenerFuncionServicio(nombreSensor: string): any {
+    switch (nombreSensor) {
+      case 'temperatura':
+        return this.secureService.getTemperatura();
+      case 'humedad':
+        return this.secureService.getHumedad();
+      case 'distancia':
+        return this.secureService.getDistancia();
+      case 'movimiento':
+        return this.secureService.getPir();
+      case 'alcohol':
+        return this.secureService.getAlcohol();
+      case 'humo':
+        return this.secureService.getHumo();
+      // Agregar más casos para otros sensores
+      default:
+        return null;
+    }
+  }
+
+  inicializarIntervalo(): void {
     this.intervalId = setInterval(() => {
-      this.obtenerTemperatura();
-      this.obtenerHumedad();
-      this.obtenerDistancia();
-      this.obtenerPir();
-      this.obtenerAlcohol();
-      this.obtenerHumo();
-    }, 20000); // Ejecutar cada 20 segundos (20000 milisegundos)
+      this.inicializarDatosSensores();
+    }, 20000);
   }
 
   detenerIntervalo(): void {
     clearInterval(this.intervalId);
   }
+
+  redirigirAComponente(nombreComponente: string) {
+    this.router.navigate([`/${nombreComponente}`]);
+  }
+
+  obtenerValor(datos: Sensor[]): string | number {
+    return datos.length > 0 ? datos[0].valor : 'No disponible';
+  }
+
+  obtenerUnidades(datos: Sensor[]): string {
+    return datos.length > 0 ? datos[0].unidades : '';
+  }
+
+  debeMostrarAdvertencia(datos: Sensor[], umbral: number): boolean {
+    return datos.length > 0 && datos[0].valor > umbral;
+  }
 }
+
+

@@ -1,3 +1,4 @@
+<!-- Estructura principal del componente -->
 <div class="d-flex flex-column min-vh-100">
     <!-- Componente de navegación -->
     <app-nav></app-nav>
@@ -11,109 +12,36 @@
                 <div class="d-flex align-items-end h-100">
                     <!-- Espacio flexible que crece automáticamente -->
                     <div class="flex-grow-1"></div>
-                    <!-- Contenedor para las cards de imágenes con esquinas redondeadas -->
-                    <div class="rounded p-3  content-with-bg ml-auto d-flex flex-wrap justify-content-center">
-                        <!-- Primera card con imagen -->
-                        
-                    
-                            <!-- Primera card con imagen -->
-                            <div class="content-with-bg ml-auto d-flex flex-wrap justify-content-center">
-                                <!-- Primera card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('temperatura')">
-                                    <img src="/assets/sensores/temperatura.svg" alt="Temperatura" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Temperatura</h1>
-                                        <p class="card-text">{{ temperatura.length > 0 ? temperatura[0].valor : 'No disponible' }}
-                                            {{ temperatura.length > 0 ? temperatura[0].unidades : '' }}
-                                        </p>
-                                        <p class="card-text" *ngIf="temperatura.length > 0 && temperatura[0].valor > 32" style="color: red;">
-                                            Temperatura alta
-                                        </p>
-                                    </div>
-                                    
-                                </div>
-                                <!-- Segunda card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('humedad')">
-                                    <img src="/assets/sensores/humedad.svg" alt="Humedad" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Humedad</h1>
-                                        <p class="card-text">{{ humedad.length > 0 ? humedad[0].valor : 'No disponible' }}
-                                            {{ humedad.length > 0 ? humedad[0].unidades : '' }}
-                                        </p>
-                                    </div> 
-                                </div>
-                                <!-- Tercera card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                (click)="redirectToComponent('distancia')">
-                                <img src="/assets/sensores/distancia.svg" alt="Distancia" class="card-img-top">
-                                <div class="card-body d-flex flex-column justify-content-end">
-                                    <h1 class="card-title">Distancia</h1>
-                                    <p class="card-text">{{ distancia.length > 0 ? distancia[0].valor : 'No disponible' }}
-                                        {{ distancia.length > 0 ? distancia[0].unidades : '' }}
-                                    </p>
-                                    <p class="card-text" *ngIf="distancia.length > 0 && distancia[0].valor > 0 && distancia[0].valor < 50" style="color: red;">
-                                        Cuidado muy cerca del sensor
-                                    </p>
-                                </div> 
+                    <!-- Contenedor para las tarjetas de imágenes con esquinas redondeadas -->
+                    <div class="rounded p-3 content-with-bg ml-auto d-flex flex-wrap justify-content-center">
+                        <!-- Iteración a través de los sensores usando *ngFor -->
+                        <div class="card text-center mb-3 mx-3" style="width: 18rem;" *ngFor="let sensor of sensores"
+                            (click)="redirigirAComponente(sensor.ruta)">
+                            <!-- Imagen del sensor -->
+                            <img [src]="sensor.imagen" [alt]="sensor.nombre" class="card-img-top">
+                            <!-- Cuerpo de la tarjeta con información del sensor -->
+                            <div class="card-body d-flex flex-column justify-content-end">
+                                <!-- Título de la tarjeta (nombre del sensor) -->
+                                <h1 class="card-title">{{ sensor.nombre }}</h1>
+                                <!-- Mostrar el valor y las unidades del sensor -->
+                                <p class="card-text">
+                                    {{ sensor.datos.length > 0 ? sensor.datos[0].valor : 'No disponible' }}
+                                    {{ sensor.datos.length > 0 ? sensor.datos[0].unidades : '' }}
+                                </p>
+                                <!-- Mostrar advertencia si el valor supera el umbral -->
+                                <p class="card-text"
+                                    *ngIf="sensor.datos.length > 0 && sensor.datos[0].valor > sensor.umbral"
+                                    style="color: red;">
+                                    {{ sensor.advertencia }}
+                                </p>
                             </div>
-                                <!-- Cuarta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('pir')">
-                                    <img src="/assets/sensores/movimiento.svg" alt="Movimiento" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Movimiento</h1>
-                                        <p class="card-text">{{ pir.length > 0 ? pir[0].valor : 'No disponible' }}
-                                            {{ pir.length > 0 ? pir[0].unidades : '' }}
-                                        </p>
-                                        <p class="card-text" *ngIf="pir.length > 0 && pir[0].valor === 1" style="color: green;">
-                                            Hay movimiento
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Quinta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('alcohol')">
-                                    <img src="/assets/sensores/alcohol.svg" alt="Alcohol" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Alcohol</h1>
-                                        <p class="card-text">{{ alcohol.length > 0 ? alcohol[0].valor : 'No disponible' }}
-                                            {{ alcohol.length > 0 ? alcohol[0].unidades : '' }}
-                                        </p>
-                                        <p class="card-text" *ngIf="alcohol.length > 0 && alcohol[0].valor > 400" style="color: red;">
-                                            Niveles altos de alcohol
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Sexta card con imagen -->
-                                <div class="card text-center mb-3 mx-3" style="width: 18rem;"
-                                    (click)="redirectToComponent('humo')">
-                                    <img src="/assets/sensores/humo.svg" alt="Humo" class="card-img-top">
-                                    <div class="card-body d-flex flex-column justify-content-end">
-                                        <h1 class="card-title">Humo</h1>
-                                        <p class="card-text">{{ humo.length > 0 ? humo[0].valor : 'No disponible' }}
-                                            {{ humo.length > 0 ? humo[0].unidades : '' }}
-                                        </p>
-                                        <p class="card-text" *ngIf="humo.length > 0 && humo[0].valor > 20" style="color: red;">
-                                            Los niveles de humo son altos
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Espacio flexible que ocupa el resto del espacio vertical disponible -->
-            <div class="flex-grow-1"></div>
-            <hr>
-
-            <!-- Componente de pie de página -->
-            <div>
-                <app-footer></app-footer>
-            </div>
         </div>
     </div>
+</div>
+<div class="mt-5">
+    <app-footer></app-footer>
 </div>

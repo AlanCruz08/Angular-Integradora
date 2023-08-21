@@ -12,3 +12,12 @@ export interface SensoresAll {
   fecha: Date;
   hora: string;
 }
+
+export interface SensorInfo {
+  nombre: string;
+  imagen: string;
+  ruta: string;
+  datos: Sensor[];
+  advertencia: string;
+  umbral: number;
+}
