@@ -60,7 +60,7 @@ export class PirComponent implements OnInit {
 
   buscarValores(): void {
     const filtro = {
-      sensor_id: 1, // Cambia este valor al ID del sensor que desees
+      sensor_id: 4, // Cambia este valor al ID del sensor que desees
       fecha_inicial: this.fechaInicial,
       fecha_final: this.fechaFinal
     };
