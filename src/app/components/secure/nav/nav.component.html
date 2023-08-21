@@ -1,23 +1,21 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary px-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" routerLink="/dashboard">
       <img src="assets/svg/jira.svg" alt="Logo">
     </a>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
+
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <!-- Texto "Opciones" reemplazado por el ícono -->
-            <img src="/assets/icons/menu.png" alt="Opciones">
+          <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <i class="fas fa-bars"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li>
               <a class="dropdown-item" href="#" routerLink="/dashboard">Inicio</a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            <li>
+            <hr class="dropdown-divider">
             <li>
               <a class="dropdown-item" href="#" routerLink="/temperatura">Temperatura</a>
             </li>
@@ -27,25 +25,20 @@
             <li>
               <a class="dropdown-item" href="#" routerLink="/distancia">Distancia</a>
             </li>
-
             <li>
               <a class="dropdown-item" href="#" routerLink="/alcohol">Alcohol</a>
             </li>
             <li>
-            <li>
               <a class="dropdown-item" href="#" routerLink="/pir">Movimiento</a>
             </li>
             <li>
-            <li>
               <a class="dropdown-item" href="#" routerLink="/humo">Humo</a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
+            <hr class="dropdown-divider">
             <li>
               <a class="dropdown-item" href="#" routerLink="/equipo">Nosotros</a>
             </li>
             <hr class="dropdown-divider">
-
             <li>
               <a class="dropdown-item" (click)="cerrarSesion()">Salir</a>
             </li>
