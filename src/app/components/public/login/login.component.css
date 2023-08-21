@@ -5,15 +5,8 @@
 .image-left {
     position: absolute;
     left: 0;
-    top: 70%;
+    top: 63%;
     transform: translateY(-50%);
-    width: 400px; /* Ajusta el tamaño de la imagen */
-}
-
-.image-right {
-    position: absolute;
-    right: 0;
-    top: 70%;
-    transform: translateY(-50%);
-    width: 400px; /* Ajusta el tamaño de la imagen */
+    width: 400px;
+    /* Ajusta el tamaño de la imagen */
 }
