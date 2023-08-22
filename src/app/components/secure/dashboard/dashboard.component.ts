@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'temperatura',
       datos: [],
       advertencia: 'Temperatura alta',
-      umbral: 32
+      umbral: 32,
+      mostrarCuandoMayor: true
     },
     {
       nombre: 'Humedad',
@@ -24,7 +25,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'humedad',
       datos: [],
       advertencia: 'Humedad alta',
-      umbral: 80
+      umbral: 80,
+      mostrarCuandoMayor: true
+
     },
     {
       nombre: 'Distancia',
@@ -32,7 +35,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'distancia',
       datos: [],
       advertencia: 'Cuidado muy cerca del sensor',
-      umbral: 50
+      umbral: 50,
+      mostrarCuandoMayor: false
+
     },
     {
       nombre: 'Movimiento',
@@ -40,7 +45,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'pir',
       datos: [],
       advertencia: 'Hay movimiento',
-      umbral: 1
+      umbral: 0,
+      mostrarCuandoMayor: true,
     },
     {
       nombre: 'Alcohol',
@@ -48,7 +54,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'alcohol',
       datos: [],
       advertencia: 'Niveles altos de alcohol',
-      umbral: 400
+      umbral: 400,
+      mostrarCuandoMayor: true
+
     },
     {
       nombre: 'Humo',
@@ -56,7 +64,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'humo',
       datos: [],
       advertencia: 'Los niveles de humo son altos',
-      umbral: 20
+      umbral: 20,
+      mostrarCuandoMayor: true
+
     },
     // Agregar más sensores aquí
   ];
@@ -144,9 +154,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return datos.length > 0 ? datos[0].unidades : '';
   }
 
-  debeMostrarAdvertencia(datos: Sensor[], umbral: number): boolean {
-    return datos.length > 0 && datos[0].valor > umbral;
+  debeMostrarAdvertencia(datos: Sensor[], umbral: number, mostrarCuandoMayor: boolean): boolean {
+    if (datos.length > 0) {
+      if (mostrarCuandoMayor) {
+        return datos[0].valor > umbral;
+      } else {
+        return datos[0].valor < umbral;
+      }
+    }
+    return false;
   }
+  
 }
 
 

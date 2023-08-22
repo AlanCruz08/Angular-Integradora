@@ -2,6 +2,7 @@ export interface Sensor {
     id: number;
     valor: number;
     unidades: string;
+    
   }
 
 
@@ -20,4 +21,5 @@ export interface SensorInfo {
   datos: Sensor[];
   advertencia: string;
   umbral: number;
+  mostrarCuandoMayor: boolean;
 }
