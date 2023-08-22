@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'alcohol',
       datos: [],
       advertencia: 'Niveles altos de alcohol',
-      umbral: 400,
+      umbral: 200,
       mostrarCuandoMayor: true
 
     },
@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ruta: 'humo',
       datos: [],
       advertencia: 'Los niveles de humo son altos',
-      umbral: 20,
+      umbral: 500,
       mostrarCuandoMayor: true
 
     },
